@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Build.Content;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -14,9 +15,19 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        //rb.linearVelocity = new Vector2((1 * speed), 0);
         rb.linearVelocity = (Vector2)transform.right * speed;
 
         Destroy(gameObject, lifeTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // TODO; レイヤーとして分けたほうが良い
+        if (collision.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject); // TODO: 硬い敵の場合は体力を減らすように
+        }
+    }
+
 }
