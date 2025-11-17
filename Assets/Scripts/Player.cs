@@ -1,43 +1,56 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private BoxCollider2D co;
+    private PlayerInputSet input;
 
     [Header("Movement")]
-    private float xInputDir = 0;
-    private float yInputDir = 0;
-    private float speed = 3f;
+    [SerializeField] public float speed = 3f;
+    [SerializeField] public Vector2 moveInput;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        co = GetComponent<BoxCollider2D>();
+        input = new PlayerInputSet();
     }
 
-    private void Update()
+    // SetActiveがtrueになったときのメソッド
+    // Awakeの次に実行される
+    // inputはAwakeでクラス生成して、OnEnableで有効化するという流れ
+    private void OnEnable()
     {
-        xInputDir = 0f;
-        yInputDir = 0f;
+        input.Enable();
 
-        if (Input.GetKey(KeyCode.W))
-            yInputDir = 1f;
+        // started: 触れた瞬間 performed: その間 canceled: 離したとき
+        input.Player.Movement.performed += OnMovementPerformed;
+        input.Player.Movement.canceled += OnMovementCanceled;
+    }
 
-        if (Input.GetKey(KeyCode.S))
-            yInputDir = -1f;
+    private void OnDisable()
+    {
+        input.Player.Movement.performed -= OnMovementPerformed;
+        input.Player.Movement.canceled -= OnMovementCanceled;
 
-        if (Input.GetKey(KeyCode.D))
-            xInputDir = 1f;
+        input.Disable();
 
-        if (Input.GetKey(KeyCode.A))
-            xInputDir = -1f;
+    }
+
+    private void OnMovementPerformed(InputAction.CallbackContext ctx)
+    {
+        moveInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnMovementCanceled(InputAction.CallbackContext ctx)
+    {
+        moveInput = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
         // 上下左右移動
-        var next = rb.position + new Vector2((xInputDir * speed * Time.fixedDeltaTime) , (yInputDir * speed * Time.fixedDeltaTime));
+        var next = rb.position + new Vector2((moveInput.x * speed * Time.fixedDeltaTime), (moveInput.y * speed * Time.fixedDeltaTime));
         rb.MovePosition(next);
     }
 
