@@ -13,8 +13,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Vector2 viewportSpawnPosition;
     [SerializeField] private Vector2 worldSpawnPosition;
 
-
-
     private void Start()
     {
         cam = Camera.main;
