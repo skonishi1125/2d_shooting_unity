@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyA : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float speed = 1f;

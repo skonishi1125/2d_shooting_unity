@@ -2,22 +2,16 @@
 
 public class EnemyHealth : MonoBehaviour
 {
-    private EnemyB enemy;
     private float hitPoint;
     [SerializeField] private float maxHitPoint;
 
     private void Start()
     {
         hitPoint = maxHitPoint;
-        enemy = GetComponent<EnemyB>();
     }
 
     public void TakeDamage(float damage)
     {
-
-        if (enemy == null)
-            return;
-
         hitPoint = hitPoint - damage;
         if (hitPoint <= 0f)
             Die();
