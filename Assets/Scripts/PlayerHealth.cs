@@ -1,0 +1,76 @@
+﻿using System.Collections;
+using UnityEngine;
+
+public class PlayerHealth : MonoBehaviour
+{
+    private SpriteRenderer sr;
+
+    private float currentLife;
+    [SerializeField] private float maxLife = 3f;
+    [SerializeField] private bool isInvincible; // 無敵フラグ
+    [SerializeField] private float invincibleTime = 1f;
+    private Coroutine startInvinsibleCo;
+    private int playerLayer;
+    private int enemyLayer;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        playerLayer = LayerMask.NameToLayer("Player");
+        enemyLayer = LayerMask.NameToLayer("Enemy");
+
+        currentLife = maxLife;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isInvincible)
+            return;
+
+        currentLife -= amount;
+        if (currentLife <= 0)
+        {
+            Die();
+            return;
+        }
+
+        StartInvincibleCo();
+
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    // 被弾後の無敵時間
+    private void StartInvincibleCo()
+    {
+        // 無敵中に何かダメージを受けることがあったとき、再度無敵エフェクトをかける
+        if (startInvinsibleCo != null)
+            StopCoroutine(startInvinsibleCo);
+
+        startInvinsibleCo = StartCoroutine(StartInvincible());
+    }
+
+    private IEnumerator StartInvincible()
+    {
+        Physics.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        isInvincible = true;
+
+        float elapsed = 0f;
+        float blinkInterval = .1f;
+
+        while (elapsed < invincibleTime)
+        {
+            sr.enabled = !sr.enabled;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+
+        sr.enabled = true;
+        Physics.IgnoreLayerCollision(playerLayer, enemyLayer, false);
+        isInvincible = false;
+    }
+
+}
