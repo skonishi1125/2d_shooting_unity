@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        GameManager.Instance.GameOver();
     }
 
     // 被弾後の無敵時間
