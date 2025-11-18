@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 3
   isInvincible: 0
-  invincibleTime: 3
+  invincibleTime: 1
 --- !u!1 &2009830819
 GameObject:
   m_ObjectHideFlags: 0
