@@ -1,6 +1,4 @@
-﻿using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor.Build.Content;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,11 +8,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
     [SerializeField] private float damage = 1f;
+    private int enemyLayer;
+
     [SerializeField] Color attackEffectColor = Color.white;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     private void OnEnable()
@@ -26,8 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // TODO; レイヤーとして分けたほうが良い
-        if (!collision.CompareTag("Enemy"))
+        if (collision.gameObject.layer != enemyLayer)
             return;
 
         // Bullet自体を消す
