@@ -27,24 +27,20 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // TODO; レイヤーとして分けたほうが良い
-        if (collision.CompareTag("Enemy"))
+        if (!collision.CompareTag("Enemy"))
+            return;
+
+        // Bullet自体を消す
+        Destroy(gameObject);
+
+        var health = collision.GetComponent<EnemyHealth>();
+        if (health == null)
         {
-            // Bullet自体を消す
-            Destroy(gameObject);
-
-            // 敵のHPを削り、0になったらDestroyさせる
-            EnemyB enemy = collision.GetComponent<EnemyB>();
-
-            if (enemy == null)
-                return;
-
-            Color enemyOriginalColor = enemy.sr.color;
-            enemy.hitPoint -= damage;
-            enemy.SetSrColor(attackEffectColor);
-
-            if (enemy.hitPoint <= 0)
-                Destroy(collision.gameObject);
+            Debug.LogWarning($"EnemyHealth が見つかりません。: {collision.name}");
+            return;
         }
+
+        health.TakeDamage(damage);
     }
 
 }

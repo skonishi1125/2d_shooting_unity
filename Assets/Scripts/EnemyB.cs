@@ -1,15 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyB : MonoBehaviour
 {
     public SpriteRenderer sr { get; private set; }
     private Rigidbody2D rb;
-    private Transform transform;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float lifeTime = 30f;
-    [SerializeField] public float hitPoint = 2;
 
+    [Header("Movement")]
     [SerializeField] private float baseY; // Sin波のベース座標
     [SerializeField] private float amplitude = .5f; // 上下の幅
     [SerializeField] private float frequency = 2f;  // 上下の速度
@@ -17,7 +15,6 @@ public class EnemyB : MonoBehaviour
 
     private void Awake()
     {
-        transform = gameObject.transform;
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
