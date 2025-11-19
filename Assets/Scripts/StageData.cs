@@ -1,16 +1,9 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class StageData : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+[CreateAssetMenu(menuName = "Shooting Stage Data")]
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class StageData : ScriptableObject
+{
+    public List<WaveData> waves;
 }

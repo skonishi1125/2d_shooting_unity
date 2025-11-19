@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject gameOverUI;
-    private bool isGameOver = false;
+    private bool IsStageClear = false;
+    private bool IsGameOver = false;
 
     private void Awake()
     {
@@ -27,12 +28,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void GameOver()
+    public void StageClear()
     {
-        if (isGameOver)
+        if (IsStageClear)
             return;
 
-        isGameOver = true;
+        IsStageClear = true;
+        Debug.Log("GameManager: STAGE CLEAR!");
+    }
+
+    public void GameOver()
+    {
+        if (IsGameOver)
+            return;
+
+        IsGameOver = true;
 
         // UI表示
         gameOverUI.SetActive(true);

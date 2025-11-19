@@ -837,7 +837,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485b37c9dd2b093428f21a6b4a79669a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveData: {fileID: 11400000, guid: d22a4ffbffc00984abab36abd926aee2, type: 2}
+--- !u!1 &1741409847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1741409849}
+  - component: {fileID: 1741409848}
+  m_Layer: 0
+  m_Name: StageController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1741409848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741409847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f7302bd773714498ae5ec07d109db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageData: {fileID: 11400000, guid: b352bcc6c5b14a9409ace6e61c674384, type: 2}
+  waveSpawner: {fileID: 1219275092}
+--- !u!4 &1741409849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741409847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2156119, y: 0.439055, z: 0.036899365}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769885591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,7 +1385,8 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 72977267}
   - {fileID: 1817593864}
-  - {fileID: 2009830820}
+  - {fileID: 1741409849}
   - {fileID: 1219275091}
+  - {fileID: 2009830820}
   - {fileID: 48848183}
   - {fileID: 2045909004}

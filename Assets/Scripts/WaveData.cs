@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Shooting Stage Wave Data")]
+[CreateAssetMenu(menuName = "Shooting Wave Data")]
 public class WaveData : ScriptableObject
 {
     [System.Serializable]
