@@ -8,8 +8,6 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float lifeTime = 10f;
 
     private int playerLayer;
-
-
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

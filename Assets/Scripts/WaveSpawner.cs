@@ -51,6 +51,11 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(WaveData.SpawnEvent e)
     {
+        if (e.enemyPrefab == null)
+        {
+            Debug.LogWarning("WaveにEnemy Prefabが未登録です。");
+            return;
+        }
 
         // x軸はSpawnerのpositionを使う
         var viewportSpawnX = cam.WorldToViewportPoint(gameObject.transform.position).x;
