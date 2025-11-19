@@ -24,22 +24,4 @@ public abstract class EnemyBase : MonoBehaviour
     // 動きはこのクラスの継承先で定義する
     protected abstract void Move();
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != Layers.Player)
-            return;
-
-        var health = collision.GetComponent<PlayerHealth>();
-        if (health == null)
-        {
-            Debug.LogWarning($"PlayerHealth が見つかりません。: {collision.name}");
-            return;
-        }
-
-        health.TakeDamage(1);
-
-
-    }
-
 }

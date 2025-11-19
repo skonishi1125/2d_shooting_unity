@@ -7,7 +7,6 @@ public class EnemyBullet : MonoBehaviour
     [Header("Bullet Details")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
-    [SerializeField] private int damage = 1;
 
     private void Awake()
     {
@@ -21,24 +20,4 @@ public class EnemyBullet : MonoBehaviour
 
         Destroy(gameObject, lifeTime);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != Layers.Player)
-            return;
-
-        // Bullet自体を消す
-        Destroy(gameObject);
-
-        var health = collision.GetComponent<PlayerHealth>();
-        if (health == null)
-        {
-            Debug.LogWarning($"PlayerHealth が見つかりません。: {collision.name}");
-            return;
-        }
-
-        health.TakeDamage(damage);
-    }
-
-
 }

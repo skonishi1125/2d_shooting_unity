@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 226195466993149033}
   - component: {fileID: 2283769430876353533}
   - component: {fileID: 1380114529793377723}
+  - component: {fileID: 1338011782915566851}
   m_Layer: 7
   m_Name: EnemyB
   m_TagString: Enemy
@@ -200,6 +201,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7440808831227308983, guid: 5741ec6c5db748545a6af28c8e31bca3, type: 3}
   firePoint: {fileID: 4891940657736938118}
   fireInterval: 1
+--- !u!114 &1338011782915566851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735359449724668362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61abbd3b1df43ae4aade4e36f8ff84d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  destroySelfOnHit: 0
 --- !u!1 &6535735417094295563
 GameObject:
   m_ObjectHideFlags: 0

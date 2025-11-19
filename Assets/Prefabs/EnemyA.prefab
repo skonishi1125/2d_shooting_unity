@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1601821513095848497}
   - component: {fileID: 3647018075987013696}
   - component: {fileID: 5501554047138162769}
+  - component: {fileID: -4859739893125272582}
   m_Layer: 7
   m_Name: EnemyA
   m_TagString: Enemy
@@ -191,3 +192,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoint: 2
+--- !u!114 &-4859739893125272582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569070505350619842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61abbd3b1df43ae4aade4e36f8ff84d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  destroySelfOnHit: 0
