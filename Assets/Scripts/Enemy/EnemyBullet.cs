@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour, IDamageSource
 {
     private Rigidbody2D rb;
 
     [Header("Bullet Details")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
+    [SerializeField] private int damage = 1;
+    public int Damage => damage;
 
     private void Awake()
     {

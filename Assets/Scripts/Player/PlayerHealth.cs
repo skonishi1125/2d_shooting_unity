@@ -70,4 +70,17 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != Layers.Enemy &&
+            collision.gameObject.layer != Layers.EnemyBullet)
+            return;
+
+        var source = collision.GetComponent<IDamageSource>();
+        if (source == null)
+            return;
+
+        TakeDamage(source.Damage);
+    }
+
 }

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour, IDamageSource
 {
     protected Rigidbody2D rb;
 
     [SerializeField] protected float speed = 1f;
     [SerializeField] protected float lifeTime = 10f;
+    [SerializeField] private int contactDamage = 1;
+
+    public int Damage => contactDamage;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
