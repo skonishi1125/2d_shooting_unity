@@ -21,8 +21,6 @@ public class DamagePlayerOnTrigger : MonoBehaviour
 
         if (destroySelfOnHit)
             Destroy(gameObject);
-
-
     }
 
 }
