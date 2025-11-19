@@ -6,12 +6,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     [SerializeField] protected float speed = 1f;
     [SerializeField] protected float lifeTime = 10f;
-
-    private int playerLayer;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerLayer = LayerMask.NameToLayer("Player");
     }
 
     protected virtual void OnEnable()
@@ -30,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != playerLayer)
+        if (collision.gameObject.layer != Layers.Player)
             return;
 
         var health = collision.GetComponent<PlayerHealth>();

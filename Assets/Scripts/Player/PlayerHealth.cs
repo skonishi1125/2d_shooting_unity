@@ -10,14 +10,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool isInvincible; // 無敵フラグ
     [SerializeField] private float invincibleTime = 1f;
     private Coroutine startInvinsibleCo;
-    private int playerLayer;
-    private int enemyLayer;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        playerLayer = LayerMask.NameToLayer("Player");
-        enemyLayer = LayerMask.NameToLayer("Enemy");
 
         currentLife = maxLife;
     }
@@ -56,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator StartInvincible()
     {
-        Physics.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        Physics.IgnoreLayerCollision(Layers.Player, Layers.Enemy, true);
         isInvincible = true;
 
         float elapsed = 0f;
@@ -70,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         sr.enabled = true;
-        Physics.IgnoreLayerCollision(playerLayer, enemyLayer, false);
+        Physics.IgnoreLayerCollision(Layers.Player, Layers.Enemy, false);
         isInvincible = false;
     }
 

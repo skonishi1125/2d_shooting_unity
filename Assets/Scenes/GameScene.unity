@@ -1182,7 +1182,7 @@ MonoBehaviour:
   speed: 3
   moveInput: {x: 0, y: 0}
   attackPressed: 0
-  bulletPrefab: {fileID: 4049428372481018234, guid: 74d2982756bd2dd4da4297637d2a965e, type: 3}
+  bulletPrefab: {fileID: 8814579472404970490, guid: 9919c48025dbc9a4191a7e2f0d25aec6, type: 3}
   firePoint: {fileID: 1769885592}
   fireInterval: 0.2
 --- !u!114 &1817593867

@@ -8,14 +8,12 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
     [SerializeField] private float damage = 1f;
-    private int enemyLayer;
 
     [SerializeField] Color attackEffectColor = Color.white;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     private void OnEnable()
@@ -27,7 +25,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != enemyLayer)
+        if (collision.gameObject.layer != Layers.Enemy)
             return;
 
         // Bullet自体を消す
