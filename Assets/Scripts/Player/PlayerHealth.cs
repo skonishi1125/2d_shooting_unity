@@ -73,7 +73,8 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != Layers.Enemy &&
-            collision.gameObject.layer != Layers.EnemyBullet)
+            collision.gameObject.layer != Layers.EnemyBullet &&
+            collision.gameObject.layer != Layers.Hazard)
             return;
 
         var source = collision.GetComponent<IDamageSource>();

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour, IDamageSource
 {
     private Rigidbody2D rb;
 
     [Header("Bullet Details")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
-    [SerializeField] private float damage = 1f;
+    [SerializeField] private int damage = 1;
 
     [SerializeField] Color attackEffectColor = Color.white;
+
+    public int Damage => damage;
 
     private void Awake()
     {
@@ -23,22 +25,13 @@ public class PlayerBullet : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != Layers.Enemy)
-            return;
-
-        // Bullet自体を消す
-        Destroy(gameObject);
-
-        var health = collision.GetComponent<EnemyHealth>();
-        if (health == null)
-        {
-            Debug.LogWarning($"EnemyHealth が見つかりません。: {collision.name}");
-            return;
-        }
-
-        health.TakeDamage(damage);
+        // 弾が敵レイヤーに当たった場合は、自身を削除(弾自身の責務)
+        // ダメージ自体はIDamageSourceの責務、そのダメージでのライフ計算はEnemyHealthの責務
+        if (collision.gameObject.layer == Layers.Enemy)
+            Destroy(gameObject);
     }
 
 }

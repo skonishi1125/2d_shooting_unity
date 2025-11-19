@@ -27,4 +27,16 @@ public class EnemyHealth : MonoBehaviour
         // エフェクト再生やスコア加算、SEをつけるならここでつける
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != Layers.PlayerBullet)
+            return;
+
+        var source = collision.GetComponent<IDamageSource>();
+        if (source == null)
+            return;
+
+        TakeDamage(source.Damage);
+    }
+
 }
