@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     private Rigidbody2D rb;
 

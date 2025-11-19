@@ -44,7 +44,10 @@ public class Player : MonoBehaviour
     private void Fire()
     {
         if (bulletPrefab == null || firePoint == null)
+        {
+            Debug.LogWarning("Player: burretPrefabもしくはfirePointが未割当です。");
             return;
+        }
 
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
     }
