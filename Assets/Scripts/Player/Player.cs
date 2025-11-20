@@ -5,9 +5,9 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerInputSet input;
+    private PlayerStatus status;
 
     [Header("Movement")]
-    [SerializeField] public float speed = 3f;
     [SerializeField] public Vector2 moveInput;
     [SerializeField] public bool attackPressed;
 
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         input = new PlayerInputSet();
+        status = GetComponent<PlayerStatus>();
     }
 
     private void Update()
@@ -55,7 +56,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // 上下左右移動
-        var next = rb.position + new Vector2((moveInput.x * speed * Time.fixedDeltaTime), (moveInput.y * speed * Time.fixedDeltaTime));
+        var next = rb.position + new Vector2(
+            (moveInput.x * status.MoveSpeed * Time.fixedDeltaTime),
+            (moveInput.y * status.MoveSpeed * Time.fixedDeltaTime)
+        );
         rb.MovePosition(next);
     }
 

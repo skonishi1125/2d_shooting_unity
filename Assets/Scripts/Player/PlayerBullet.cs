@@ -9,8 +9,6 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
     [SerializeField] private int damage = 1;
 
-    [SerializeField] Color attackEffectColor = Color.white;
-
     public int Damage => damage;
 
     private void Awake()
