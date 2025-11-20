@@ -6,52 +6,28 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInputSet input;
     private PlayerStatus status;
+    private PlayerShooter shooter;
 
     [Header("Movement")]
     [SerializeField] public Vector2 moveInput;
     [SerializeField] public bool attackPressed;
-
-    [Header("Attack Settings")]
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private float fireInterval = 0.2f;
-    private float fireTimer = 0f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         input = new PlayerInputSet();
         status = GetComponent<PlayerStatus>();
+        shooter = GetComponent<PlayerShooter>();
     }
 
     private void Update()
     {
         if (attackPressed)
         {
-            fireTimer -= Time.deltaTime;
-
-            if (fireTimer <= 0f)
-            {
-                Fire();
-                fireTimer = fireInterval;
-            }
-        }
-        else
-        {
-            fireTimer = 0f;
+            shooter.Fire();
         }
     }
 
-    private void Fire()
-    {
-        if (bulletPrefab == null || firePoint == null)
-        {
-            Debug.LogWarning("Player: burretPrefabもしくはfirePointが未割当です。");
-            return;
-        }
-
-        Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-    }
 
     private void FixedUpdate()
     {

@@ -32,4 +32,9 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
             Destroy(gameObject);
     }
 
+    public void Init(int damage)
+    {
+        this.damage = damage;
+    }
+
 }
