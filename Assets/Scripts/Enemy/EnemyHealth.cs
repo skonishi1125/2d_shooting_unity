@@ -2,7 +2,7 @@
 
 public class EnemyHealth : MonoBehaviour
 {
-    protected SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer sr;
 
     private float hitPoint;
     [SerializeField] private float maxHitPoint;
@@ -15,7 +15,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        if (sr == null)
+        {
+            Debug.LogWarning("EnemyHealth: Spriteが未取得のため、コード側で割り当てます。");
+            sr = GetComponentInChildren<SpriteRenderer>();
+        }
     }
 
     private void Start()

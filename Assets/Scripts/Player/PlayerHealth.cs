@@ -5,8 +5,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
 
-    private float currentLife;
-    [SerializeField] private float maxLife = 3f;
+    private int currentLife;
+    public int CurrentLife => currentLife;
+
+    [SerializeField] public int maxLife = 3;
     [SerializeField] private bool isInvincible; // 無敵フラグ
     [SerializeField] private float invincibleTime = 1f;
     private Coroutine startInvinsibleCo;
@@ -18,11 +20,8 @@ public class PlayerHealth : MonoBehaviour
             Debug.LogWarning("Spriteが未取得のため、コード側で割り当てます。");
             sr = GetComponentInChildren<SpriteRenderer>();
         }
-    }
-
-    private void Start()
-    {
         currentLife = maxLife;
+
     }
 
     public void TakeDamage(int amount)
