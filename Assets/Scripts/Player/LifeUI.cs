@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class LifeUI : MonoBehaviour
@@ -47,6 +46,8 @@ public class LifeUI : MonoBehaviour
 
     private void RefreshIcons(int life)
     {
+        // 例えばライフが3 -> 2 になるとき、
+        // icons[2](ライフ3つめ）が、2 < 2 となり、falseで非表示となる
         for (int i = 0; i < icons.Count; i++)
             icons[i].gameObject.SetActive(i < life);
     }

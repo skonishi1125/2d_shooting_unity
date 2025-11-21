@@ -14,14 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   events:
   - time: 1
-    enemyPrefab: {fileID: 7677019631954991585, guid: 232c9272d37817b498e123f7cbe9336f, type: 3}
-    viewportY: 0.5
-  - time: 1.5
-    enemyPrefab: {fileID: 7677019631954991585, guid: 232c9272d37817b498e123f7cbe9336f, type: 3}
-    viewportY: 0.5
-  - time: 2
-    enemyPrefab: {fileID: 7677019631954991585, guid: 232c9272d37817b498e123f7cbe9336f, type: 3}
-    viewportY: 0.5
-  - time: 2.5
-    enemyPrefab: {fileID: 7677019631954991585, guid: 232c9272d37817b498e123f7cbe9336f, type: 3}
+    enemyPrefab: {fileID: 1047494270342915443, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
     viewportY: 0.5

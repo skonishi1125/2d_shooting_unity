@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  lifeTime: 30
+  lifeTime: 10
   contactDamage: 1
   amplitude: 2
   frequency: 2
