@@ -19,9 +19,9 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
-        if (bulletPrefab == null || firePoint == null)
+        if (bulletPrefab == null || firePoint == null || status == null)
         {
-            Debug.LogWarning("bulletPrefab か firePointが未設定です。");
+            Debug.LogWarning("bulletPrefab か firePoint か statusが正しく取得できていません。");
             return;
         }
         canFire = true;

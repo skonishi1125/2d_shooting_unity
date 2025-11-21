@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   lifeTime: 30
-  contactDamage: 2
+  contactDamage: 1
   amplitude: 2
   frequency: 2
 --- !u!114 &5612550976984898570

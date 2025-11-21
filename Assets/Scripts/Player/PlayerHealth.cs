@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer sr;
 
     private float currentLife;
     [SerializeField] private float maxLife = 3f;
@@ -11,10 +11,17 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float invincibleTime = 1f;
     private Coroutine startInvinsibleCo;
 
+    private void Awake()
+    {
+        if (sr == null)
+        {
+            Debug.LogWarning("Spriteが未取得のため、コード側で割り当てます。");
+            sr = GetComponentInChildren<SpriteRenderer>();
+        }
+    }
+
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-
         currentLife = maxLife;
     }
 
@@ -81,6 +88,7 @@ public class PlayerHealth : MonoBehaviour
         if (source == null)
             return;
 
+        Debug.Log(source.Damage);
         TakeDamage(source.Damage);
     }
 

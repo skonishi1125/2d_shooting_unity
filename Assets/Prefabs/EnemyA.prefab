@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   lifeTime: 10
-  contactDamage: 3
+  contactDamage: 1
 --- !u!114 &7555269093085520501
 MonoBehaviour:
   m_ObjectHideFlags: 0
