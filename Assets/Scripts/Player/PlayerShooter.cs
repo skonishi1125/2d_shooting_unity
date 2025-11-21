@@ -5,7 +5,6 @@ public class PlayerShooter : MonoBehaviour
     // GameObject bulletPrefabともできるが、その場合InstantiateするとGameObjectで返るようになる
     [SerializeField] PlayerBullet bulletPrefab;
     [SerializeField] Transform firePoint;
-    [SerializeField] float fireInterval = .2f;
     private float fireTimer = 0f;
     private bool canFire;
 
@@ -42,7 +41,7 @@ public class PlayerShooter : MonoBehaviour
         if (!canFire)
             return;
 
-        fireTimer = fireInterval;
+        fireTimer = status.FireInterval;
         PlayerBullet bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         bullet.Init(status.ShotDamage);
         canFire = false;
