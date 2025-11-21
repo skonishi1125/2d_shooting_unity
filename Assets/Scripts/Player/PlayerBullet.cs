@@ -6,7 +6,7 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
 
     [Header("Bullet Details")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
+    [SerializeField] private float lifeTime = 1f; // 画面外に出た時のチェック
     [SerializeField] private int damage = 1;
 
     public int Damage => damage;
