@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.65430176, g: 0.7176471, b: 0.32941177, a: 1}
+  m_Color: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoint: 3
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  hitColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.05
 --- !u!114 &7247558990578104841
 MonoBehaviour:
   m_ObjectHideFlags: 0
