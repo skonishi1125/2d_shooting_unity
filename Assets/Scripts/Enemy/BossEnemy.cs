@@ -14,6 +14,8 @@ public class BossEnemy : EnemyBase
 
     protected override void OnEnable()
     {
+        // base.OnEnable()は呼ばない（lifetime制御しない）
+
         firstMoveTimer = enterDuration + waitDuration;
 
         // 無敵フラグ, 弾を打たない設定ON
@@ -49,7 +51,9 @@ public class BossEnemy : EnemyBase
                     centerFixed = true;
 
                     if (IsInvincible)
+                    {
                         SetInvincible(false); // 無敵解除
+                    }
                 }
             }
 
@@ -57,7 +61,9 @@ public class BossEnemy : EnemyBase
         }
 
         if (!CanShoot)
+        {
             SetCanShoot(true); // 弾を打てるようにする
+        }
 
         base.FixedUpdate();
     }
@@ -81,9 +87,5 @@ public class BossEnemy : EnemyBase
         // Rigidbody2D を通して位置を動かす
         rb.MovePosition(targetPos);
     }
-
-    // TODO: 無敵有効化 / 無敵無効化を作りたい
-
-
 
 }
