@@ -3,6 +3,7 @@
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
+    private EnemyBase enemyBase;
 
     private float hitPoint;
     [SerializeField] private float maxHitPoint;
@@ -20,6 +21,8 @@ public class EnemyHealth : MonoBehaviour
             Debug.LogWarning("EnemyHealth: Spriteが未取得のため、コード側で割り当てます。");
             sr = GetComponentInChildren<SpriteRenderer>();
         }
+        // 実際はEnemyA, B, Bossなどがアタッチされているが、これで取れる
+        enemyBase = GetComponent<EnemyBase>();
     }
 
     private void Start()
@@ -50,6 +53,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        // 無敵中なら何もしない
+        if (enemyBase != null && enemyBase.IsInvincible)
+            return;
+
         hitPoint = hitPoint - damage;
         sr.color = hitColor;
         flashTimer = flashDuration;

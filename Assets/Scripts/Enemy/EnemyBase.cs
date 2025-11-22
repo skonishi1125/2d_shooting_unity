@@ -8,6 +8,9 @@ public abstract class EnemyBase : MonoBehaviour, IDamageSource
     [SerializeField] protected float lifeTime = 10f;
     [SerializeField] private int contactDamage = 1;
 
+    public bool IsInvincible { get; protected set; } = false;
+    public bool CanShoot { get; protected set; } = true;
+
     public int Damage => contactDamage;
 
     protected virtual void Awake()
@@ -28,4 +31,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamageSource
     // 動きはこのクラスの継承先で定義する
     protected abstract void Move();
 
+    public void SetInvincible(bool value) => IsInvincible = value;
+    public void SetCanShoot(bool value) => CanShoot = value;
 }

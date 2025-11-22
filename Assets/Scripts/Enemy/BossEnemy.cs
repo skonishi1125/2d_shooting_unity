@@ -16,6 +16,10 @@ public class BossEnemy : EnemyBase
     {
         firstMoveTimer = enterDuration + waitDuration;
 
+        // 無敵フラグ, 弾を打たない設定ON
+        SetInvincible(true);
+        SetCanShoot(false);
+
         centerPos = rb.position;
         moveTimer = 0f;
         centerFixed = false;
@@ -43,11 +47,17 @@ public class BossEnemy : EnemyBase
                     moveTimer = 0f;
                     rb.linearVelocity = Vector2.zero;
                     centerFixed = true;
+
+                    if (IsInvincible)
+                        SetInvincible(false); // 無敵解除
                 }
             }
 
             return;
         }
+
+        if (!CanShoot)
+            SetCanShoot(true); // 弾を打てるようにする
 
         base.FixedUpdate();
     }
