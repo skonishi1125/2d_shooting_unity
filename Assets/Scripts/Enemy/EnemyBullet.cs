@@ -9,6 +9,7 @@ public class EnemyBullet : MonoBehaviour, IDamageSource
     [SerializeField] private float lifeTime = 3f; // 画面外に出た時のチェック
     [SerializeField] private int damage = 1;
     public int Damage => damage;
+    private Vector2 moveDir = Vector2.left; // デフォルト: 左に発射
 
     private void Awake()
     {
@@ -17,9 +18,17 @@ public class EnemyBullet : MonoBehaviour, IDamageSource
 
     private void OnEnable()
     {
-        // ←方向のため、-1を掛ける
-        rb.linearVelocity = (Vector2)transform.right * -1 * speed;
+        // moveDir が設定されていれば、それに沿って飛ばす
+        rb.linearVelocity = moveDir.normalized * speed;
 
         Destroy(gameObject, lifeTime);
     }
+
+    // Shooter からInstantiateした際に、その弾にパラメータを設定する際に呼ぶ
+    public void Init(Vector2 direction)
+    {
+        moveDir = direction.normalized;
+        rb.linearVelocity = moveDir * speed;
+    }
+
 }
