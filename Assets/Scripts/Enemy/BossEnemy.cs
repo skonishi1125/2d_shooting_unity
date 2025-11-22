@@ -54,67 +54,97 @@ public class BossEnemy : EnemyBase
 
     protected override void FixedUpdate()
     {
-        var time = Time.deltaTime;
+        float dt = Time.fixedDeltaTime;
 
-        // 最初の動作演出
-        if (firstMoveTimer > 0f)
-        {
-            firstMoveTimer -= time;
-
-            // 出てきて、止まるまで
-            if (firstMoveTimer > waitDuration)
-            {
-                EnterMove();
-            }
-            else
-            {
-                // waitDuration
-                // 初回のみ停止位置を揺れの中心に確定
-                if (!centerFixed)
-                {
-                    centerPos = rb.position;
-                    moveTimer = 0f;
-                    rb.linearVelocity = Vector2.zero;
-                    centerFixed = true;
-
-                    if (IsInvincible)
-                    {
-                        SetInvincible(false); // 無敵解除。多少殴れるお得な隙間を用意しておく
-                    }
-                }
-            }
-
+        // 登場演出フェーズ trueが返る限り, 開始設定まで進ませない
+        if (UpdateEnterPhase(dt))
             return;
-        }
 
-        // 登場演出が全て終わると、弾を打ち始める
-        if (!CanShoot)
-        {
-            SetCanShoot(true); // 弾を打てるようにする
-            currentPatternIndex = 0;
-            ApplyCurrentPattern();
-        }
+        // 演出が終わったあと
+        // 戦闘開始設定(弾を打つ, パターン割当て)
+        TryStartBattle();
 
-        // 登場演出終了後の通常動作パート
-        if (firstMoveTimer <= 0f)
-        {
-            // 指定のパターン時間が終わったら、次のパターンに値を渡して再度時間をセットする
-            patternTimer -= Time.deltaTime;
-            if (patternTimer <= 0f)
-            {
-                currentPatternIndex++;
-                if (currentPatternIndex >= patterns.Count)
-                    currentPatternIndex = 0;
-                ApplyCurrentPattern();
-            }
-        }
+        // パターンチェック(パターンの秒数が経過したら、新しく割り当てる)
+        UpdatePatternCycle(dt);
 
         base.FixedUpdate();
     }
 
+    private bool UpdateEnterPhase(float dt)
+    {
+        if (firstMoveTimer <= 0f)
+            return false; // すでに演出終了
+
+        firstMoveTimer -= dt;
+
+        if (firstMoveTimer > waitDuration)
+        {
+            // 画面外から前に出てくるフェーズ
+            EnterMove();
+        }
+        else
+        {
+            // 待機フェーズ
+            HoldMove();
+        }
+
+        // まだ演出中なので、このフレームの残り処理はスキップ
+        return true;
+    }
+
+    private void TryStartBattle()
+    {
+        if (CanShoot)
+            return;
+
+        SetCanShoot(true);
+        currentPatternIndex = 0;
+        ApplyCurrentPattern();
+    }
+
+    private void UpdatePatternCycle(float dt)
+    {
+        if (patterns == null || patterns.Count == 0)
+        {
+            Debug.LogWarning("BossEnemy: パターンが割り当てられていません。");
+            return;
+        }
+
+        // パターンが継続中の間は、設定処理まで進ませずreturnさせる
+        patternTimer -= dt;
+        if (patternTimer > 0f)
+            return;
+
+        currentPatternIndex++;
+        if (currentPatternIndex >= patterns.Count)
+            currentPatternIndex = 0;
+
+        ApplyCurrentPattern();
+    }
+
+
     private void EnterMove()
     {
+        Debug.Log("EnterMove");
         rb.linearVelocity = Vector2.left;
+    }
+
+    private void HoldMove()
+    {
+        if (centerFixed)
+            return;
+
+        Debug.Log("HoldMove Setting");
+
+        // ゆらゆら動く為の中心軸を取得し、
+        // 多少殴れるようなお得感を出すために無敵解除しておく
+        centerPos = rb.position;
+        moveTimer = 0f;
+        rb.linearVelocity = Vector2.zero;
+        centerFixed = true;
+
+        if (IsInvincible)
+            SetInvincible(false);
     }
 
     protected override void Move()
