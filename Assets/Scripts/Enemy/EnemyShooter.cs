@@ -47,7 +47,7 @@ public class EnemyShooter : MonoBehaviour
             Fire();
             fireTimer = fireInterval;
         }
-       
+
     }
 
     private void Fire()
@@ -100,6 +100,16 @@ public class EnemyShooter : MonoBehaviour
         var obj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         var bullet = obj.GetComponent<EnemyBullet>();
         bullet.Init(direction);
+    }
+
+    public void SetPattern(ShootPattern pattern)
+    {
+        this.pattern = pattern;
+    }
+
+    public void SetFireInterval(float interval)
+    {
+        this.fireInterval = interval;
     }
 
 }
