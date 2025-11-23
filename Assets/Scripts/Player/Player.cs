@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsStageClear)
+            return;
+
         if (attackPressed)
         {
             shooter.Fire();
@@ -31,6 +34,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsStageClear)
+            return;
+
         // 上下左右移動
         var next = rb.position + new Vector2(
             (moveInput.x * status.MoveSpeed * Time.fixedDeltaTime),

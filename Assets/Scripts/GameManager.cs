@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -6,8 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject gameOverUI;
-    private bool IsStageClear = false;
     private bool IsGameOver = false;
+
+    [Header("Stage Clear")]
+    [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
+    public bool IsStageClear { get; private set; } = false;
+
+
 
     private void Awake()
     {
@@ -33,8 +40,33 @@ public class GameManager : MonoBehaviour
         if (IsStageClear)
             return;
 
-        IsStageClear = true;
         Debug.Log("GameManager: STAGE CLEAR!");
+        IsStageClear = true;
+
+        StartCoroutine(StageClearCo());
+
+    }
+
+    private IEnumerator StageClearCo()
+    {
+        yield return new WaitForSeconds(2f);
+
+        yield return StartCoroutine(FadeOutCo());
+
+        // 次ステージ
+    }
+
+    private IEnumerator FadeOutCo()
+    {
+        float t = 0f;
+        float duration = 2f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(0f, 1f, t / duration);
+            yield return null;
+        }
     }
 
     public void GameOver()

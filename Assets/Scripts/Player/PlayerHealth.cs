@@ -58,6 +58,9 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator StartInvincible()
     {
+        // TODO: fix?
+        // 敵のレイヤー判定を無効化してはいるが、EnemyBulletは考慮されていない
+        // ただし正常に機能してはいる。理由は、TakeDamage内でisInvincibleを見ているため.
         Physics.IgnoreLayerCollision(Layers.Player, Layers.Enemy, true);
         isInvincible = true;
 
@@ -87,7 +90,6 @@ public class PlayerHealth : MonoBehaviour
         if (source == null)
             return;
 
-        Debug.Log(source.Damage);
         TakeDamage(source.Damage);
     }
 
