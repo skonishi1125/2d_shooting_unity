@@ -166,4 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ee3172a20fed04ea5a33702c8c32a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subInterval: 0.4
+  subInterval: 0.05

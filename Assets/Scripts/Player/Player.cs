@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // ステージクリアしたら、弾だけ打たないようにする
         if (GameManager.Instance.IsStageClear)
             return;
 
@@ -34,9 +35,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.IsStageClear)
-            return;
-
         // 上下左右移動
         var next = rb.position + new Vector2(
             (moveInput.x * status.MoveSpeed * Time.fixedDeltaTime),

@@ -247,8 +247,8 @@ MonoBehaviour:
     fireInterval: 0.5
   moveRange: 3
   moveSpeed: 1
-  enterDuration: 6
-  waitDuration: 3
+  enterDuration: 0.3
+  waitDuration: 6
 --- !u!114 &7743578038401549087
 MonoBehaviour:
   m_ObjectHideFlags: 0

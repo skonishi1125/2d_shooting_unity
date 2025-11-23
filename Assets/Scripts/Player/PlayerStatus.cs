@@ -17,23 +17,48 @@ public class PlayerStatus : MonoBehaviour
         MoveSpeed = baseMoveSpeed;
         ShotDamage = baseShotDamage;
         FireInterval = baseFireInterval;
+
+        var gm = GameManager.Instance;
+        if (gm != null)
+        {
+            gm.InitRunDataIfNeeded(this);
+        }
+
+    }
+    public void SetFromRunData(PlayerRunData data)
+    {
+        MoveSpeed = data.moveSpeed;
+        ShotDamage = data.shotDamage;
+        FireInterval = data.fireInterval;
+    }
+
+    // 変更後に GameManager にも反映するユーティリティ
+    private void SyncToGameManager()
+    {
+        var gm = GameManager.Instance;
+        if (gm == null)
+            return;
+        gm.SyncRunDataFrom(this);
     }
 
     // アイテムなどを取ったときこの処理を呼んでパラメータを上げる
     public void AddMoveSpeed(float amount)
     {
         MoveSpeed += amount;
+        SyncToGameManager();
         Debug.Log(MoveSpeed);
     }
     public void AddShotDamage(int amount)
     {
         ShotDamage += amount;
+        SyncToGameManager();
         Debug.Log(ShotDamage);
     }
 
     public void SubFireInterval(float amount)
     {
         FireInterval -= amount;
+        SyncToGameManager();
         Debug.Log(FireInterval);
     }
 
