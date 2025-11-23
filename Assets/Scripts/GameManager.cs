@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Stage Clear")]
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
     public bool IsStageClear { get; private set; } = false;
+    private int currentStageIndex = 1; // Stage1
 
 
 
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(FadeOutCo());
 
-        // 次ステージ
+        LoadNextStage();
+
     }
 
     private IEnumerator FadeOutCo()
@@ -67,6 +69,19 @@ public class GameManager : MonoBehaviour
             fadeCanvas.alpha = Mathf.Lerp(0f, 1f, t / duration);
             yield return null;
         }
+    }
+    private void LoadNextStage()
+    {
+        // 次ステージ
+        currentStageIndex++;
+
+        if (currentStageIndex > 3)
+        {
+            // 全クリ 現状タイトルに戻るが、リザルトがあるならリザルトに
+            SceneManager.LoadScene("Title");
+        }
+
+        SceneManager.LoadScene("Stage" + currentStageIndex);
     }
 
     public void GameOver()
