@@ -64,10 +64,18 @@ public class PlayerStatus : MonoBehaviour
         if (gm != null)
         {
             gm.InitRunDataIfNeeded(this);
-            gm.StatusUIHolder.UpdateAll(this);
         }
-
     }
+
+    public void Start()
+    {
+        var gm = GameManager.Instance;
+        if (gm != null)
+        {
+            gm.StatusUIHolder.SetUpRows();
+        }
+    }
+
     public void SetFromRunData(PlayerRunData data)
     {
         MoveSpeed = data.moveSpeed;

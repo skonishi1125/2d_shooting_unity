@@ -125,7 +125,6 @@ public class BossEnemy : EnemyBase
 
     private void EnterMove()
     {
-        Debug.Log("EnterMove");
         rb.linearVelocity = Vector2.left;
     }
 
@@ -133,8 +132,6 @@ public class BossEnemy : EnemyBase
     {
         if (centerFixed)
             return;
-
-        Debug.Log("HoldMove Setting");
 
         // ゆらゆら動く為の中心軸を取得し、
         // 多少殴れるようなお得感を出すために無敵解除しておく

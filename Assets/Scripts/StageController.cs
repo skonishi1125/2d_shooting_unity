@@ -52,9 +52,6 @@ public class StageController : MonoBehaviour
             case StageState.Cleared:
                 break;
         }
-
-        Debug.Log(state);
-
     }
 
     private void UpdateRunningWaves()

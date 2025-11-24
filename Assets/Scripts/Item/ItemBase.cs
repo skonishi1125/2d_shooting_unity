@@ -3,12 +3,23 @@
 public abstract class ItemBase : MonoBehaviour
 {
     protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
     protected float speed = 2f;
     protected float lifetime = 10f;
+
+    [SerializeField] protected ItemType itemType;
+    [SerializeField] protected Color itemColor = Color.white;
+
+
+    public ItemType Type => itemType;
+    public Color ItemColor => itemColor;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = itemColor;
     }
 
     private void OnEnable()
@@ -34,11 +45,11 @@ public abstract class ItemBase : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 取得時の影響はアイテム別になるので、継承先で定義する
-    //protected abstract void Apply(PlayerStatus status);
+
     protected virtual void Apply(PlayerStatus status)
     {
-        GameManager.Instance.StatusUIHolder.UpdateAll(status);
+        GameManager.Instance.StatusUIHolder.UpdateAll(status, Type, ItemColor);
     }
+
 
 }

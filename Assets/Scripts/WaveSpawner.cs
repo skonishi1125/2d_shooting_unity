@@ -25,7 +25,6 @@ public class WaveSpawner : MonoBehaviour
         // waveDataに設定したSpawnが尽きたら終了
         if (nextIndex >= waveData.events.Count)
         {
-            Debug.Log("Wave Finished.");
             IsFinished = true;
             return;
         }

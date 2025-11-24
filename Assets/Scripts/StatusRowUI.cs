@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 public class StatusRowUI : MonoBehaviour
@@ -17,17 +18,21 @@ public class StatusRowUI : MonoBehaviour
         }
     }
 
-    public void SetValue(int value)
+    public void SetValue(int value, Color color)
     {
-        // まず既存を全部消す
+        // 既存の■を全て消して、valueの数だけ生成し直す
         foreach (var b in bars)
             Destroy(b);
         bars.Clear();
 
-        // value の数だけ ■ を生成
         for (int i = 0; i < value; i++)
         {
             var bar = Instantiate(barPrefab, barHolder);
+            var img = bar.GetComponentInChildren<Image>();
+            if (img != null)
+            {
+                img.color = color;
+            }
             bars.Add(bar);
         }
     }
