@@ -64,15 +64,7 @@ public class PlayerStatus : MonoBehaviour
         if (gm != null)
         {
             gm.InitRunDataIfNeeded(this);
-        }
-    }
-
-    public void Start()
-    {
-        var gm = GameManager.Instance;
-        if (gm != null)
-        {
-            gm.StatusUIHolder.SetUpRows();
+            gm.StatusUIHolder.SetUpRows(this);
         }
     }
 

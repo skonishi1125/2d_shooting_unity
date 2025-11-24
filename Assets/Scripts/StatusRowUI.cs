@@ -31,6 +31,7 @@ public class StatusRowUI : MonoBehaviour
             var img = bar.GetComponentInChildren<Image>();
             if (img != null)
             {
+                Debug.Log("img設定: " + color);   // ここで color の中身を確認
                 img.color = color;
             }
             bars.Add(bar);

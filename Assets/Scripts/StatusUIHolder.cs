@@ -14,14 +14,11 @@ public class StatusUIHolder : MonoBehaviour
     [SerializeField] private Color fireRateItemColor;
     [SerializeField] private Color distanceItemColor;
 
-
-    public void SetUpRows()
+    public void SetUpRows(PlayerStatus status)
     {
-        Debug.Log(damageUpItemColor);
-        damageRow.SetValue(3, damageUpItemColor);
-        damageRow.SetValue(1, fireRateItemColor);
-        damageRow.SetValue(1, distanceItemColor);
-
+        damageRow.SetValue(status.ShotDamage, damageUpItemColor);
+        fireRateRow.SetValue(status.FireRateLevel, fireRateItemColor);
+        distanceRow.SetValue(status.ShotLifeTimeLevel, distanceItemColor);
     }
 
     public void UpdateAll(PlayerStatus status, ItemType type, Color itemColor)
