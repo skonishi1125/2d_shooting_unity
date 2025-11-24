@@ -7,5 +7,6 @@ public class DamageUpItem : ItemBase
     protected override void Apply(PlayerStatus status)
     {
         status.AddShotDamage(addDamage);
+        base.Apply(status);
     }
 }

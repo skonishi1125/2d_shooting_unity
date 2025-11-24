@@ -6,6 +6,6 @@ public class SpeedUpItem : ItemBase
     protected override void Apply(PlayerStatus status)
     {
         status.AddMoveSpeed(addSpeed);
-
+        base.Apply(status);
     }
 }

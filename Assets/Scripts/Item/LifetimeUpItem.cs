@@ -7,5 +7,6 @@ public class LifetimeUpItem : ItemBase
     protected override void Apply(PlayerStatus status)
     {
         status.AddLifetime(addLifetime);
+        base.Apply(status);
     }
 }

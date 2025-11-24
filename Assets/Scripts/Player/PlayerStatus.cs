@@ -14,6 +14,45 @@ public class PlayerStatus : MonoBehaviour
     public int ShotDamage { get; private set; }
     public float FireInterval { get; private set; }
 
+    // プロパティ
+    // 値を公開するが、内部計算して結果を返すやり方
+    public int FireRateLevel
+    {
+        get
+        {
+            const float baseInterval = 0.5f;
+            const float step = 0.05f;
+            const int maxLevel = 10;
+
+            // (0.50 - 0.50) / 0.05 = 0 → 1
+            // (0.50 - 0.45) / 0.05 = 1 → 2
+            // (0.50 - 0.40) / 0.05 = 2 → 3
+            float raw = (baseInterval - FireInterval) / step;
+            int level = 1 + Mathf.RoundToInt(raw);
+
+            return Mathf.Clamp(level, 1, maxLevel);
+        }
+    }
+
+    // StatusUIに渡すための整数値
+    public int ShotLifeTimeLevel
+    {
+        get
+        {
+            const float baseLifetime = 0.5f;
+            const float step = 0.1f;
+            const int maxLevel = 10;
+
+            // (0.5 - 0.5) / 0.1 = 0 → 1
+            // (0.6 - 0.5) / 0.1 = 1 → 2
+            // (0.7 - 0.5) / 0.1 = 2 → 3
+            float raw = (LifeTime - baseLifetime) / step;
+            int level = 1 + Mathf.RoundToInt(raw);
+
+            return Mathf.Clamp(level, 1, maxLevel);
+        }
+    }
+
     private void Awake()
     {
         MoveSpeed = baseMoveSpeed;
@@ -25,6 +64,7 @@ public class PlayerStatus : MonoBehaviour
         if (gm != null)
         {
             gm.InitRunDataIfNeeded(this);
+            gm.StatusUIHolder.UpdateAll(this);
         }
 
     }
@@ -72,5 +112,6 @@ public class PlayerStatus : MonoBehaviour
         SyncToGameManager();
         Debug.Log($"FireInterval: " + FireInterval);
     }
+
 
 }

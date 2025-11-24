@@ -7,5 +7,6 @@ public class IntervalDownItem : ItemBase
     protected override void Apply(PlayerStatus status)
     {
         status.SubFireInterval(subInterval);
+        base.Apply(status);
     }
 }

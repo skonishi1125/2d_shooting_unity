@@ -30,8 +30,12 @@ public class GameManager : MonoBehaviour
     public PlayerRunData RunData { get; private set; } = new PlayerRunData();
     public bool HasRunData { get; private set; }
 
+    [Header("Game Over")]
     [SerializeField] private GameObject gameOverUI;
     private bool IsGameOver = false;
+
+    [Header("Status UI")]
+    [SerializeField] public StatusUIHolder StatusUIHolder;
 
     [Header("Stage Clear")]
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
@@ -41,8 +45,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         CheckGameManager();
-        if (gameOverUI == null)
-            Debug.LogWarning("GameOverUI が設定されていません。");
+        if (gameOverUI == null || StatusUIHolder == null)
+            Debug.LogWarning("GameManagerにUIが正しく設定されていません。");
     }
 
     // シーン移動時に各値を戻すための設定
@@ -157,8 +161,6 @@ public class GameManager : MonoBehaviour
             fadeCanvas.alpha = 0f;
     }
 
-
-
     public void GameOver()
     {
         if (IsGameOver)
@@ -174,6 +176,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 
 }
