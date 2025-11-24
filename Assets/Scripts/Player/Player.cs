@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private float slowMoveSpeed = 2f;
     private bool slowMovePressed = false;
     private Coroutine beingTransparencyCo;
+    private bool wasSlow; // 1フレーム前の slow 状態
 
     private void Awake()
     {
@@ -128,7 +129,8 @@ public class Player : MonoBehaviour
 
     private void UpdateTransparency(bool isSlow)
     {
-        if (isSlow)
+        // OFF → ON になった瞬間だけコルーチンを始める
+        if (isSlow && !wasSlow)
         {
             if (beingTransparencyCo != null)
             {
@@ -136,34 +138,46 @@ public class Player : MonoBehaviour
             }
             beingTransparencyCo = StartCoroutine(BeingTransparencyCo());
         }
-        else
+
+        // ON → OFF になった瞬間、コルーチンを停止して元の透明度に戻す
+        if (!isSlow && wasSlow)
         {
             var c = graphics.color;
             c.a = 1f;
             graphics.color = c;
 
-            // 透明度を戻すとき、Coroutineは使わないので切っておく
             if (beingTransparencyCo != null)
             {
                 StopCoroutine(beingTransparencyCo);
                 beingTransparencyCo = null;
             }
         }
+
+        wasSlow = isSlow;
+
     }
 
     private IEnumerator BeingTransparencyCo()
     {
         float t = 0f;
-        float duration = .2f;
+        float duration = 0.2f;
+        float minAlpha = 0.5f;
 
         while (t < duration && slowMovePressed)
         {
             t += Time.deltaTime;
             var c = graphics.color;
-            c.a = Mathf.Lerp(1f, 0.5f, t / duration);
+            c.a = Mathf.Lerp(1f, minAlpha, t / duration);
             graphics.color = c;
             yield return null;
         }
+
+        // 最後に 0.5 に寄せておく
+        var last = graphics.color;
+        last.a = minAlpha;
+        graphics.color = last;
+
+        beingTransparencyCo = null;
     }
 
 }
