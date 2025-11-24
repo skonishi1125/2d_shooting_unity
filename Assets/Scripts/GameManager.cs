@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class PlayerRunData
 {
     public float moveSpeed;
+    public float lifetime;
     public int shotDamage;
     public float fireInterval;
 
     public void SetFromStatus(PlayerStatus status)
     {
         moveSpeed = status.MoveSpeed;
+        lifetime = status.LifeTime;
         shotDamage = status.ShotDamage;
         fireInterval = status.FireInterval;
     }

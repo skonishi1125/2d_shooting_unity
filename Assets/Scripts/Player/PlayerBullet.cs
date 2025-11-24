@@ -6,10 +6,11 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
 
     [Header("Bullet Details")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifeTime = 1f; // 画面外に出た時のチェック
+    [SerializeField] private float lifeTime = .5f;
     [SerializeField] private int damage = 1;
 
     public int Damage => damage;
+    public float LifeTime => lifeTime;
 
     private void Awake()
     {
@@ -19,8 +20,6 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
     private void OnEnable()
     {
         rb.linearVelocity = (Vector2)transform.right * speed;
-
-        Destroy(gameObject, lifeTime);
     }
 
 
@@ -32,9 +31,11 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
             Destroy(gameObject);
     }
 
-    public void Init(int damage)
+    public void Init(int damage, float lifetime)
     {
         this.damage = damage;
+        this.lifeTime = lifetime;
+        Destroy(gameObject, this.lifeTime);
     }
 
 }

@@ -43,7 +43,7 @@ public class PlayerShooter : MonoBehaviour
 
         fireTimer = status.FireInterval;
         PlayerBullet bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        bullet.Init(status.ShotDamage);
+        bullet.Init(status.ShotDamage, status.LifeTime);
         canFire = false;
     }
 
