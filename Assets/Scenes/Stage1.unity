@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee596c69d431cc4781e145cc53e2f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 1817593863}
+  graphics: {fileID: 1817593863}
   maxLife: 3
   isInvincible: 0
   invincibleTime: 1
@@ -1109,8 +1109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f22d5c1aee5c234b814a003b032a458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 1817593863}
   moveInput: {x: 0, y: 0}
   attackPressed: 0
+  slowMovePressed: 0
 --- !u!61 &898321956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1600,7 +1602,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

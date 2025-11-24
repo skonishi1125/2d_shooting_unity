@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer graphics;
 
     private int currentLife;
     public int CurrentLife => currentLife;
@@ -15,10 +15,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        if (sr == null)
+        if (graphics == null)
         {
             Debug.LogWarning("Spriteが未取得のため、コード側で割り当てます。");
-            sr = GetComponentInChildren<SpriteRenderer>();
+            graphics = GetComponentInChildren<SpriteRenderer>();
         }
         currentLife = maxLife;
 
@@ -69,12 +69,12 @@ public class PlayerHealth : MonoBehaviour
 
         while (elapsed < invincibleTime)
         {
-            sr.enabled = !sr.enabled;
+            graphics.enabled = !graphics.enabled;
             yield return new WaitForSeconds(blinkInterval);
             elapsed += blinkInterval;
         }
 
-        sr.enabled = true;
+        graphics.enabled = true;
         Physics.IgnoreLayerCollision(Layers.Player, Layers.Enemy, false);
         isInvincible = false;
     }

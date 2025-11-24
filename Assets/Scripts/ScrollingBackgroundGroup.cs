@@ -18,11 +18,10 @@ public class ScrollingBackgroundGroup : MonoBehaviour
     {
         // 2枚含む親ごと、左へ動かす
         transform.position += Vector3.left * scrollSpeed * Time.deltaTime;
-
-        Debug.Log(transform.position.x);
         // 親が -width まで来たら、右に width だけ戻す
         if (transform.position.x <= -width)
         {
+            // (-19.2, 0) を (1, 0) * 19.2 = (19.2, 0) だけ加算して、 (0, 0) に戻す
             transform.position += Vector3.right * width;
         }
     }
