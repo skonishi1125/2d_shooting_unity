@@ -175,6 +175,8 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverUI.SetActive(false);
+
     }
 
 }

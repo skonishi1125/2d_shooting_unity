@@ -12,6 +12,7 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
 
     private Rigidbody2D rb;
     private PooledBullet pooled;
+    private bool isDespawned;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
         this.lifeTime = lifetime;
 
         rb.linearVelocity = (Vector2)transform.right * speed;
+        isDespawned = false;
 
         // 弾丸の寿命をセットする
         CancelInvoke(nameof(Despawn));
@@ -49,6 +51,12 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
 
     private void Despawn()
     {
+        if (isDespawned)
+            return;
+
+        isDespawned = true;
+        CancelInvoke(nameof(Despawn));// 二重呼び出し対策
+
         // プールがあれば戻す・なければ保険で Destroy
         if (pooled != null)
             pooled.Despawn();

@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 7998959598135017805}
-  maxHitPoint: 1
+  maxHitPoint: 100
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.05
@@ -279,6 +279,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pattern: 2
-  bulletPool: {fileID: 0}
   firePoint: {fileID: 5199017718753099569}
   fireInterval: 0.2

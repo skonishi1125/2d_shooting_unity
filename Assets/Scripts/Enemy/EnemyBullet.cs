@@ -11,6 +11,7 @@ public class EnemyBullet : MonoBehaviour, IDamageSource
 
     private Rigidbody2D rb;
     private PooledBullet pooled;
+    private bool isDespawned;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class EnemyBullet : MonoBehaviour, IDamageSource
     {
         moveDir = direction.normalized;
         rb.linearVelocity = moveDir.normalized * speed;
+        isDespawned = false;
 
         CancelInvoke(nameof(Despawn));
         Invoke(nameof(Despawn), lifeTime);
@@ -30,6 +32,12 @@ public class EnemyBullet : MonoBehaviour, IDamageSource
 
     private void Despawn()
     {
+        if (isDespawned)
+            return;
+
+        isDespawned = true;
+        CancelInvoke(nameof(Despawn));// 二重呼び出し対策
+
         // プールがあれば戻す・なければ保険で Destroy
         if (pooled != null)
             pooled.Despawn();
