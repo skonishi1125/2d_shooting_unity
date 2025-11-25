@@ -12,7 +12,8 @@ public class EnemyShooter : MonoBehaviour
 
     private EnemyBase enemyBase;
     [SerializeField] private ShootPattern pattern = ShootPattern.Straight;
-    [SerializeField] private GameObject bulletPrefab;
+
+    private EnemyBulletPool bulletPool;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireInterval = 1f;
     private float fireTimer = 0f;
@@ -21,17 +22,21 @@ public class EnemyShooter : MonoBehaviour
 
     private void Awake()
     {
-        if (bulletPrefab == null || firePoint == null)
-        {
-            Debug.LogWarning("bulletPrefab か firePointが未設定です。");
-            return;
-        }
         enemyBase = GetComponent<EnemyBase>();
     }
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player")?.transform;
+
+        // EnemyはPrefabから呼び出すため、Scene上のEnemyBulletPoolをSerializeFieldなどで参照することができない
+        // そのため、Findで取得する
+        bulletPool = FindAnyObjectByType<EnemyBulletPool>();
+        if (bulletPool == null || firePoint == null)
+        {
+            Debug.LogWarning("EnemyShooter: bulletPool か firePointが未設定です。");
+            return;
+        }
     }
 
     private void Update()
@@ -97,9 +102,16 @@ public class EnemyShooter : MonoBehaviour
 
     private void FireBullet(Vector2 direction)
     {
-        var obj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        //var obj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        //var bullet = obj.GetComponent<EnemyBullet>();
+        //bullet.Init(direction);
+
+        var obj = bulletPool.Get(firePoint.position, Quaternion.identity);
         var bullet = obj.GetComponent<EnemyBullet>();
-        bullet.Init(direction);
+        if (bullet != null)
+        {
+            bullet.Init(direction);
+        }
     }
 
     public void SetPattern(ShootPattern pattern)
