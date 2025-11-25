@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPool : MonoBehaviour
+public abstract class BulletPool : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int initialSize = 50;
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected int initialSize = 50;
 
     private readonly Queue<GameObject> pool = new Queue<GameObject>();
 
     // 開始時点で、在庫を作成
-    private void Awake()
+    protected virtual void Awake()
     {
         for (int i = 0; i < initialSize; i++)
         {
@@ -21,7 +21,7 @@ public class BulletPool : MonoBehaviour
     }
 
 
-    private GameObject CreateNewBullet()
+    protected virtual GameObject CreateNewBullet()
     {
         var obj = Instantiate(bulletPrefab, transform);
         var bullet = obj.GetComponent<PooledBullet>();
@@ -52,7 +52,7 @@ public class BulletPool : MonoBehaviour
     }
 
     // 使い終わった弾丸を在庫に戻す処理
-    public void Return(GameObject obj)
+    public virtual void Return(GameObject obj)
     {
         Debug.Log($"BulletPool: 弾丸格納。");
         obj.SetActive(false);

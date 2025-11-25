@@ -7,7 +7,7 @@ public class PlayerShooter : MonoBehaviour
     //[SerializeField] PlayerBullet bulletPrefab; <- bulletPool用意により不要になった
 
     [SerializeField] Transform firePoint;
-    [SerializeField] BulletPool bulletPool;
+    [SerializeField] PlayerBulletPool bulletPool;
     private float fireTimer = 0f;
     private bool canFire;
 
