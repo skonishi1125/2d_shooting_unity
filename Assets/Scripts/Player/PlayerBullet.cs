@@ -2,24 +2,34 @@
 
 public class PlayerBullet : MonoBehaviour, IDamageSource
 {
-    private Rigidbody2D rb;
 
     [Header("Bullet Details")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = .5f;
     [SerializeField] private int damage = 1;
-
-    public int Damage => damage;
     public float LifeTime => lifeTime;
+    public int Damage => damage;
+
+    private Rigidbody2D rb;
+    private PooledBullet pooled;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        pooled = GetComponent<PooledBullet>();
     }
 
-    private void OnEnable()
+    // 弾丸を呼び出したときの初期化メソッド
+    public void Init(int damage, float lifetime)
     {
+        this.damage = damage;
+        this.lifeTime = lifetime;
+
         rb.linearVelocity = (Vector2)transform.right * speed;
+
+        // 弾丸の寿命をセットする
+        CancelInvoke(nameof(Despawn));
+        Invoke(nameof(Despawn), lifeTime);
     }
 
 
@@ -27,15 +37,23 @@ public class PlayerBullet : MonoBehaviour, IDamageSource
     {
         // 弾が敵レイヤーに当たった場合は、自身を削除(弾自身の責務)
         // ダメージ自体はIDamageSourceの責務、そのダメージでのライフ計算はEnemyHealthの責務
-        if (collision.gameObject.layer == Layers.Enemy)
-            Destroy(gameObject);
+        //if (collision.gameObject.layer == Layers.Enemy)
+        //    Destroy(gameObject);
+
+        if (collision.gameObject.layer != Layers.Enemy)
+            return;
+
+        // 体力を減らす処理は、EnemyHealth側で実装済
+        Despawn();
     }
 
-    public void Init(int damage, float lifetime)
+    private void Despawn()
     {
-        this.damage = damage;
-        this.lifeTime = lifetime;
-        Destroy(gameObject, this.lifeTime);
+        // プールがあれば戻す・なければ保険で Destroy
+        if (pooled != null)
+            pooled.Despawn();
+        else
+            Destroy(gameObject);
     }
 
 }

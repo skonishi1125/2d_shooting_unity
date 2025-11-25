@@ -2,9 +2,12 @@
 
 public class PlayerShooter : MonoBehaviour
 {
-    // GameObject bulletPrefabともできるが、その場合InstantiateするとGameObjectで返るようになる
-    [SerializeField] PlayerBullet bulletPrefab;
+    // GameObject bulletPrefabともできるが、
+    // その場合InstantiateするとGameObjectで返るようになる
+    //[SerializeField] PlayerBullet bulletPrefab; <- bulletPool用意により不要になった
+
     [SerializeField] Transform firePoint;
+    [SerializeField] BulletPool bulletPool;
     private float fireTimer = 0f;
     private bool canFire;
 
@@ -19,7 +22,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
-        if (bulletPrefab == null || firePoint == null || status == null)
+        if (bulletPool == null || firePoint == null || status == null)
         {
             Debug.LogWarning("bulletPrefab か firePoint か statusが正しく取得できていません。");
             return;
@@ -41,10 +44,22 @@ public class PlayerShooter : MonoBehaviour
         if (!canFire)
             return;
 
-        fireTimer = status.FireInterval;
-        PlayerBullet bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        bullet.Init(status.ShotDamage, status.LifeTime);
+        //canFire = false;
+        //fireTimer = status.FireInterval;
+        //PlayerBullet bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        //bullet.Init(status.ShotDamage, status.LifeTime);
+
         canFire = false;
+        fireTimer = status.FireInterval;
+
+        // Poolから取得する
+        var obj = bulletPool.Get(firePoint.position, Quaternion.identity);
+        var bullet = obj.GetComponent<PlayerBullet>();
+        if (bullet != null)
+        {
+            bullet.Init(status.ShotDamage, status.LifeTime);
+        }
+
     }
 
 }
