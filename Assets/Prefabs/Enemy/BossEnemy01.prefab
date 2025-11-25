@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 3652020755381280808}
   - component: {fileID: 4970488654093198955}
   - component: {fileID: 6742198891661322769}
+  - component: {fileID: 206720452808306048}
   m_Layer: 7
   m_Name: BossEnemy01
   m_TagString: Enemy
@@ -281,3 +282,16 @@ MonoBehaviour:
   pattern: 2
   firePoint: {fileID: 5199017718753099569}
   fireInterval: 0.2
+--- !u!114 &206720452808306048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765411029015786328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdaae80d355bbb340bcfd5d2c9517bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefab: {fileID: 5449886895525299048, guid: 030aa0bd2b2aad24c9e2a1c9b89eb63d, type: 3}

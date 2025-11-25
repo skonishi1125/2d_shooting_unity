@@ -4,8 +4,8 @@ public abstract class ItemBase : MonoBehaviour
 {
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
-    protected float speed = 2f;
-    protected float lifetime = 10f;
+    protected float speed = 1f;
+    protected float lifetime = 15f;
 
     [SerializeField] protected ItemType itemType;
     [SerializeField] protected Color itemColor = Color.white;
