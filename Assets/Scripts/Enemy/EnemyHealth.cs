@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Color hitColor = Color.white;
     [SerializeField] private float flashDuration = 0.05f;
     private float flashTimer = 0f;
+
+    // ドロップに関するアクションイベント
+    // GameManager側で設定したメソッドを、このアクション（イベントリスト）に格納
+    // 受取る引数は、今回EnemyHealthでないといけない
+    public static event Action<EnemyHealth> OnAnyEnemyDied;
+
 
     private void Awake()
     {
@@ -67,6 +74,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        // OnAnyEnemyDiedに登録されている全てのメソッドの呼び出し
+        // ? で、存在しなければnullを返すようにしている
+        OnAnyEnemyDied?.Invoke(this);
+
         // Destroy(enemy.gameObject); じゃなく、
         // EnemyHealthもobjectに紐づいているのでこれで消せる
         Destroy(gameObject);

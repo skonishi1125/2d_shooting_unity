@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     public bool IsStageClear { get; private set; } = false;
     private int currentStageIndex = 1; // Stage1
 
+    // キルカウンタ
+    private int enemyKillCount = 0;
+    private int enemyKillDropRate = 5; // ex: 5なら5体ごとにアイテムを落とす
+
     private void Awake()
     {
         CheckGameManager();
@@ -53,11 +57,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        EnemyHealth.OnAnyEnemyDied += OnEnemyDied;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        EnemyHealth.OnAnyEnemyDied -= OnEnemyDied;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -102,6 +108,20 @@ public class GameManager : MonoBehaviour
             return;
 
         RunData.SetFromStatus(status);
+    }
+
+    private void OnEnemyDied(EnemyHealth deadEnemy)
+    {
+        enemyKillCount++;
+
+        if (enemyKillCount % enemyKillDropRate == 0)
+        {
+            var drop = deadEnemy.GetComponent<EnemyDrop>();
+            if (drop != null)
+            {
+                drop.SpawnDrop();
+            }
+        }
     }
 
 
@@ -157,6 +177,7 @@ public class GameManager : MonoBehaviour
     private void ResetManagerState()
     {
         IsStageClear = false;
+        //enemyKillCount = 0;  リセットしなくてもいいかも
         if (fadeCanvas != null)
             fadeCanvas.alpha = 0f;
     }

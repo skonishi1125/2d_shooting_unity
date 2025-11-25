@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5183190181880901775}
   - component: {fileID: 2164538137857549165}
   - component: {fileID: 7868424215897857731}
+  - component: {fileID: 2802683811059925937}
   m_Layer: 7
   m_Name: EnemyA
   m_TagString: Enemy
@@ -141,6 +142,19 @@ MonoBehaviour:
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.05
+--- !u!114 &2802683811059925937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083786234958640598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdaae80d355bbb340bcfd5d2c9517bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefab: {fileID: 1451983918265114069, guid: 3ef4dd8f6e8c0624e96615ee9a797acb, type: 3}
 --- !u!1 &7758536825788336561
 GameObject:
   m_ObjectHideFlags: 0
