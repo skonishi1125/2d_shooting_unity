@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Status UI")]
     [SerializeField] public StatusUIHolder StatusUIHolder;
+    [SerializeField] private CanvasGroup statusUIGroup;
 
     [Header("Stage Clear")]
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
@@ -51,6 +52,9 @@ public class GameManager : MonoBehaviour
         CheckGameManager();
         if (gameOverUI == null || StatusUIHolder == null)
             Debug.LogWarning("GameManagerにUIが正しく設定されていません。");
+
+        statusUIGroup.alpha = 0;
+
     }
 
     // シーン移動時に各値を戻すための設定
@@ -93,6 +97,7 @@ public class GameManager : MonoBehaviour
         {
             RunData.SetFromStatus(status);
             HasRunData = true;
+            statusUIGroup.alpha = 1;
         }
         else
         {
