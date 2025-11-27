@@ -13,6 +13,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float invincibleTime = 1f;
     private Coroutine startInvinsibleCo;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip damageSfx;
+    [SerializeField] private AudioClip dieSfx;
+
     private void Awake()
     {
         if (graphics == null)
@@ -29,6 +33,8 @@ public class PlayerHealth : MonoBehaviour
         if (isInvincible)
             return;
 
+        AudioManager.Instance.PlaySeAtPoint(damageSfx, transform.position);
+
         currentLife -= amount;
         if (currentLife <= 0)
         {
@@ -43,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        AudioManager.Instance.PlaySeAtPoint(dieSfx, transform.position);
         GameManager.Instance.GameOver();
     }
 

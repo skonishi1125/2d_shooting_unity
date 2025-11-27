@@ -267,6 +267,7 @@ MonoBehaviour:
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.05
+  dieSfx: {fileID: 8300000, guid: 90607b98d8ff6ba408a41690654d7fb8, type: 3}
 --- !u!114 &6742198891661322769
 MonoBehaviour:
   m_ObjectHideFlags: 0

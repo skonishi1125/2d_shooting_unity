@@ -11,7 +11,6 @@ public abstract class ItemBase : MonoBehaviour
     [SerializeField] protected Color itemColor = Color.white;
 
     [Header("Audio")]
-    [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected AudioClip getSfx;
 
     public ItemType Type => itemType;
@@ -36,6 +35,7 @@ public abstract class ItemBase : MonoBehaviour
         if (collision.gameObject.layer != Layers.Player)
             return;
 
+        AudioManager.Instance.PlaySeAtPoint(getSfx, transform.position);
         AudioSource.PlayClipAtPoint(getSfx, transform.position);
 
         var status = collision.GetComponent<PlayerStatus>();

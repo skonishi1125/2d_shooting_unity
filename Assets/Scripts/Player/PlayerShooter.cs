@@ -9,7 +9,6 @@ public class PlayerShooter : MonoBehaviour
     private bool canFire;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip fireSfx;
 
     private PlayerStatus status;
@@ -28,7 +27,7 @@ public class PlayerShooter : MonoBehaviour
             Debug.LogWarning("bulletPrefab か firePoint か statusが正しく取得できていません。");
             return;
         }
-        if (audioSource == null || fireSfx == null)
+        if (fireSfx == null)
         {
             Debug.LogWarning("PlayerShooter: Audio未設定です。");
         }
@@ -49,7 +48,7 @@ public class PlayerShooter : MonoBehaviour
         if (!canFire)
             return;
 
-        audioSource.PlayOneShot(fireSfx);
+        AudioManager.Instance.PlaySeOneShot(fireSfx);
 
         canFire = false;
         fireTimer = status.FireInterval;

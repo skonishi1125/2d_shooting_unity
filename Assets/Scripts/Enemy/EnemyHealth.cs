@@ -15,6 +15,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float flashDuration = 0.05f;
     private float flashTimer = 0f;
 
+    [Header("Audio")]
+    [SerializeField] protected AudioClip dieSfx;
+
     // ドロップに関するアクションイベント
     // GameManager側で設定したメソッドを、このアクション（イベントリスト）に格納
     // 受取る引数は、今回EnemyHealthでないといけない
@@ -82,8 +85,7 @@ public class EnemyHealth : MonoBehaviour
         // EnemyHealthもobjectに紐づいているのでこれで消せる
         Destroy(gameObject);
 
-        // TODO
-        // エフェクト再生やスコア加算、SEをつけるならここでつける
+        AudioManager.Instance.PlaySeAtPoint(dieSfx, transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
