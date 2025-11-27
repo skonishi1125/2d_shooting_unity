@@ -28,7 +28,7 @@ public class PlayerShooter : MonoBehaviour
             Debug.LogWarning("bulletPrefab か firePoint か statusが正しく取得できていません。");
             return;
         }
-        if (audioSource != null && fireSfx != null)
+        if (audioSource == null || fireSfx == null)
         {
             Debug.LogWarning("PlayerShooter: Audio未設定です。");
         }
