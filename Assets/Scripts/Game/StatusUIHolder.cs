@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class StatusUIHolder : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class StatusUIHolder : MonoBehaviour
             case ItemType.LifeTime:
                 distanceRow.SetValue(status.ShotLifeTimeLevel, itemColor);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
 }

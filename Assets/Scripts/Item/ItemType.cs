@@ -2,5 +2,5 @@
 {
     Damage,
     FireRate,
-    LifeTime
+    LifeTime,
 }
