@@ -2,14 +2,15 @@
 
 public class PlayerShooter : MonoBehaviour
 {
-    // GameObject bulletPrefabともできるが、
-    // その場合InstantiateするとGameObjectで返るようになる
-    //[SerializeField] PlayerBullet bulletPrefab; <- bulletPool用意により不要になった
-
+    [Header("Shooter Setting")]
     [SerializeField] Transform firePoint;
     [SerializeField] PlayerBulletPool bulletPool;
     private float fireTimer = 0f;
     private bool canFire;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip fireSfx;
 
     private PlayerStatus status;
 
@@ -26,6 +27,10 @@ public class PlayerShooter : MonoBehaviour
         {
             Debug.LogWarning("bulletPrefab か firePoint か statusが正しく取得できていません。");
             return;
+        }
+        if (audioSource != null && fireSfx != null)
+        {
+            Debug.LogWarning("PlayerShooter: Audio未設定です。");
         }
         canFire = true;
     }
@@ -44,10 +49,7 @@ public class PlayerShooter : MonoBehaviour
         if (!canFire)
             return;
 
-        //canFire = false;
-        //fireTimer = status.FireInterval;
-        //PlayerBullet bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        //bullet.Init(status.ShotDamage, status.LifeTime);
+        audioSource.PlayOneShot(fireSfx);
 
         canFire = false;
         fireTimer = status.FireInterval;
@@ -59,6 +61,7 @@ public class PlayerShooter : MonoBehaviour
         {
             bullet.Init(status.ShotDamage, status.LifeTime);
         }
+
 
     }
 
