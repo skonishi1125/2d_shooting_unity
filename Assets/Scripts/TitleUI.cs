@@ -23,8 +23,8 @@ public class TitleUI : MonoBehaviour
 
         // 初期位置を少し下げておいて、引き上げる
         rt.anchoredPosition = originalPos + new Vector2(0f, -80f);
-        //  originalPos へ 2f かけて, SetEaseの挙動で、 0.1f ディレイをかけて動作させる
-        rt.DOAnchorPos(originalPos, 2f).SetEase(Ease.OutCubic).SetDelay(0.1f);
+        //  originalPos へ 0.5f かけて, SetEaseの挙動で、 0.1f ディレイをかけて動作させる
+        rt.DOAnchorPos(originalPos, .5f).SetEase(Ease.OutCubic).SetDelay(0.1f);
 
         // フェード
         startButtonGroup.DOFade(1f, 0.5f).SetEase(Ease.OutQuad).SetDelay(0.1f);

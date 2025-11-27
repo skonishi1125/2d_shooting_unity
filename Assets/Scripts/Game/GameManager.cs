@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     public PlayerRunData RunData { get; private set; } = new PlayerRunData();
     public bool HasRunData { get; private set; }
 
+    [Header("Pause")]
+    [SerializeField] private GameObject pauseMenu;
+    public bool IsPausing { get; private set; } = false;
+
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverUI;
     private bool IsGameOver = false;
@@ -50,8 +54,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         CheckGameManager();
-        if (gameOverUI == null || StatusUIHolder == null)
-            Debug.LogWarning("GameManagerにUIが正しく設定されていません。");
+        if (gameOverUI == null || StatusUIHolder == null || pauseMenu == null)
+            Debug.LogWarning("GameManager: UIが正しく設定されていません。");
 
         statusUIGroup.alpha = 0;
 
@@ -129,6 +133,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void TogglePausing()
+    {
+        IsPausing = !IsPausing;
+
+        Time.timeScale = IsPausing ? 0f : 1f;
+        pauseMenu.SetActive(IsPausing);
+    }
 
     public void StageClear()
     {

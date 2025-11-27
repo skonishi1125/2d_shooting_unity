@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Pause中
+        if (GameManager.Instance.IsPausing)
+            return;
+
         // ステージクリアしたら、弾だけ打たないようにする
         if (GameManager.Instance.IsStageClear)
             return;
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour
         input.Player.Attack.canceled += OnAttackCanceled;
         input.Player.SlowMove.performed += OnSlowMovePerformed;
         input.Player.SlowMove.canceled += OnSlowMoveCanceled;
+        input.Player.Pause.started += OnPausePushed;
     }
 
     private void OnDisable()
@@ -82,6 +87,7 @@ public class Player : MonoBehaviour
         input.Player.Attack.canceled -= OnAttackCanceled;
         input.Player.SlowMove.performed -= OnSlowMovePerformed;
         input.Player.SlowMove.canceled -= OnSlowMoveCanceled;
+        input.Player.Pause.started -= OnPausePushed;
 
         input.Disable();
 
@@ -115,6 +121,11 @@ public class Player : MonoBehaviour
     private void OnSlowMoveCanceled(InputAction.CallbackContext ctx)
     {
         slowMovePressed = false;
+    }
+
+    private void OnPausePushed(InputAction.CallbackContext ctx)
+    {
+        GameManager.Instance.TogglePausing();
     }
 
 
