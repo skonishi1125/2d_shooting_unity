@@ -30,4 +30,10 @@ public class TitleUI : MonoBehaviour
         startButtonGroup.DOFade(1f, 0.5f).SetEase(Ease.OutQuad).SetDelay(0.1f);
 
     }
+
+    public void PressToStartButton()
+    {
+        GameManager.Instance.StartStage(1);
+    }
+
 }

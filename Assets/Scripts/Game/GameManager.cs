@@ -218,9 +218,10 @@ public class GameManager : MonoBehaviour
     }
 
     // ゲームの開始処理 Start()が予約されているのでToをつけておく
-    public void StartTo()
+    public void StartStage(int index)
     {
-        SceneManager.LoadScene(Scenes.Stage + 1);
+        SetStatusUIAlpha(true);
+        SceneManager.LoadScene(Scenes.Stage + index);
     }
     public void Retry()
     {
