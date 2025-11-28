@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
-using TMPro;
 
 [System.Serializable]
 public class PlayerRunData
@@ -49,6 +50,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup stageCall;
     [SerializeField] private TextMeshProUGUI stageCallText;
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
+
+    [Header("Clear")]
+    [SerializeField] private GameObject clearCall;
+    [SerializeField] private TextMeshProUGUI clearCallText;
+    [SerializeField] private CanvasGroup clearToTitleButton;
 
     public bool IsStageClear { get; private set; } = false;
     private int currentStageIndex = 1; // Stage1
@@ -142,8 +148,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-
     public void TogglePausing()
     {
         IsPausing = !IsPausing;
@@ -159,6 +163,14 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("GameManager: STAGE CLEAR!");
         IsStageClear = true;
+
+        // コルーチンを回す前に、ゲームクリアか判断する
+        if (currentStageIndex > 2)
+        {
+            Debug.Log("Complete!");
+            clearCall.SetActive(true);
+            return;
+        }
 
         StartCoroutine(StageClearCo());
 
@@ -191,14 +203,18 @@ public class GameManager : MonoBehaviour
         // 次ステージ
         currentStageIndex++;
 
-        if (currentStageIndex > 3)
+        if (currentStageIndex > 1)
         {
             // 全クリ 現状タイトルに戻るが、リザルトがあるならリザルトに
-            SceneManager.LoadScene(Scenes.Title);
+            //SceneManager.LoadScene(Scenes.Title);
+            Debug.Log("clear!");
+            gameObject.SetActive(true);
+
             return;
         }
 
         SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
+        DisplayStageCall(currentStageIndex);
     }
 
     private void ResetManagerState()
@@ -225,14 +241,7 @@ public class GameManager : MonoBehaviour
     {
         SetStatusUIAlpha(true);
 
-        // stageCall
-        // Coroutine想定だが、DOTweenでやってみる
-        stageCallText.text = "Stage" + index;
-        Sequence seq = DOTween.Sequence();
-        seq.AppendInterval(.2f);
-        seq.Append(stageCall.DOFade(1f, .3f).SetEase(Ease.OutQuad));
-        seq.AppendInterval(2f);
-        seq.Append(stageCall.DOFade(0f, 1f).SetEase(Ease.Linear));
+        DisplayStageCall(index);
 
         SceneManager.LoadScene(Scenes.Stage + index);
     }
@@ -247,6 +256,25 @@ public class GameManager : MonoBehaviour
         TogglePausing();
         SetStatusUIAlpha(false);
         SceneManager.LoadScene(Scenes.Title);
+    }
+
+    public void ClearToTitle()
+    {
+        SetStatusUIAlpha(false);
+        clearCall.SetActive(false);
+
+        SceneManager.LoadScene(Scenes.Title);
+    }
+
+    private void DisplayStageCall(int index)
+    {
+        // Coroutine想定だが、DOTweenでやってみる
+        stageCallText.text = "Stage" + index;
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(.2f);
+        seq.Append(stageCall.DOFade(1f, .3f).SetEase(Ease.OutQuad));
+        seq.AppendInterval(2f);
+        seq.Append(stageCall.DOFade(0f, 1f).SetEase(Ease.Linear));
     }
 
 }
