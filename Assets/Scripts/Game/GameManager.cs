@@ -84,9 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded");
         ResetManagerState();
-        // ついでにStageControllerやPlayerなどを探して参照をセットしたりもできる
     }
 
     private void CheckGameManager()

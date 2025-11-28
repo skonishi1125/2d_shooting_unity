@@ -48,7 +48,7 @@ public class HelpText : MonoBehaviour
     private string GetMoveDisplayString(InputAction action)
     {
         var bindings = action.bindings;
-        Debug.Log(bindings);
+        //Debug.Log(bindings);
         var list = new System.Collections.Generic.List<string>();
 
         for (int i = 0; i < bindings.Count; i++)

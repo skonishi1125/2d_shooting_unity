@@ -5,11 +5,15 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Camera cam;
     private PlayerInputSet input;
     private PlayerStatus status;
     private PlayerShooter shooter;
 
+    [Header("Graphics")]
     [SerializeField] private SpriteRenderer graphics;
+    private float halfWidth;
+    private float halfHeight;
 
     [Header("Movement")]
     [SerializeField] public Vector2 moveInput;
@@ -18,6 +22,8 @@ public class Player : MonoBehaviour
     private bool slowMovePressed = false;
     private Coroutine beingTransparencyCo;
     private bool wasSlow; // 1フレーム前の slow 状態
+    private float leftLimit;
+    private float rightLimit;
 
     private void Awake()
     {
@@ -32,6 +38,14 @@ public class Player : MonoBehaviour
             graphics = GetComponentInChildren<SpriteRenderer>();
         }
 
+        var extents = graphics.bounds.extents; // ワールド座標での半径
+        halfWidth = extents.x;
+        halfHeight = extents.y;
+    }
+
+    private void Start()
+    {
+        cam = Camera.main;
     }
 
     private void Update()
@@ -59,6 +73,22 @@ public class Player : MonoBehaviour
             (moveInput.x * finalMoveSpeed * Time.fixedDeltaTime),
             (moveInput.y * finalMoveSpeed * Time.fixedDeltaTime)
         );
+
+        // 画面内に収める処理
+        if (cam != null)
+        {
+            // Camera z: -10 Player z:0 なので、距離10とする
+            // ViewportToWorldPointには、カメラから見てz方向にどれだけ離れているかを渡す
+            // 今回Playerはz=0なので、カメラのz位置のマイナスを渡すだけで良い
+            float zDistance = transform.position.z - cam.transform.position.z;
+
+            Vector3 leftBottom = cam.ViewportToWorldPoint(new Vector3(0f, 0f, zDistance));
+            Vector3 rightTop = cam.ViewportToWorldPoint(new Vector3(1f, 1f, zDistance));
+
+            next.x = Mathf.Clamp(next.x, leftBottom.x + halfWidth, rightTop.x - halfWidth);
+            next.y = Mathf.Clamp(next.y, leftBottom.y + halfHeight, rightTop.y - halfHeight);
+        }
+
         rb.MovePosition(next);
     }
 
