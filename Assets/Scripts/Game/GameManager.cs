@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -43,8 +42,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Status UI")]
     [SerializeField] public StatusUIHolder StatusUIHolder;
-    [SerializeField] private CanvasGroup statusUIGroup;
-    [SerializeField] private CanvasGroup manualRow;
+    [SerializeField] private GameObject statusUIGroup;
+    [SerializeField] private GameObject manualRow;
 
     [Header("Stages")]
     [SerializeField] private CanvasGroup stageCall;
@@ -66,17 +65,17 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         CheckGameManager();
-        if (gameOverUI == null || StatusUIHolder == null || pauseMenu == null)
-            Debug.LogWarning("GameManager: UIが正しく設定されていません。");
+        if (StatusUIHolder == null || pauseMenu == null)
+            Debug.LogWarning("GameManager: 設定値が正しくありません。");
 
-        SetStatusUIAlpha(false);
+        SetStatusUIActive(false);
 
     }
 
-    private void SetStatusUIAlpha(bool isDisplayed)
+    private void SetStatusUIActive(bool isDisplayed)
     {
-        manualRow.alpha = isDisplayed ? 1f : 0f;
-        statusUIGroup.alpha = isDisplayed ? 1f : 0f;
+        manualRow.SetActive(isDisplayed);
+        statusUIGroup.SetActive(isDisplayed);
     }
 
     // シーン移動時に各値を戻すための設定
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour
         {
             RunData.SetFromStatus(status);
             HasRunData = true;
-            SetStatusUIAlpha(true);
+            SetStatusUIActive(true);
         }
         else
         {
@@ -135,19 +134,14 @@ public class GameManager : MonoBehaviour
         RunData.SetFromStatus(status);
     }
 
-    private void OnEnemyDied(EnemyHealth deadEnemy)
+    // Pause / CLEARしてTitleへ戻る時にステータスをリセットする
+    private void ResetRunData()
     {
-        enemyKillCount++;
+        HasRunData = false;
+        RunData = new PlayerRunData();
 
-        if (enemyKillCount % enemyKillDropRate == 0)
-        {
-            var drop = deadEnemy.GetComponent<EnemyDrop>();
-            if (drop != null)
-            {
-                drop.SpawnDrop();
-            }
-        }
     }
+
     public void TogglePausing()
     {
         IsPausing = !IsPausing;
@@ -203,12 +197,12 @@ public class GameManager : MonoBehaviour
         // 次ステージ
         currentStageIndex++;
 
-        if (currentStageIndex > 1)
+        if (currentStageIndex > 3)
         {
             // 全クリ 現状タイトルに戻るが、リザルトがあるならリザルトに
             //SceneManager.LoadScene(Scenes.Title);
             Debug.Log("clear!");
-            gameObject.SetActive(true);
+            clearCall.SetActive(true);
 
             return;
         }
@@ -239,7 +233,8 @@ public class GameManager : MonoBehaviour
     // ゲームの開始処理 Start()が予約されているのでToをつけておく
     public void StartStage(int index)
     {
-        SetStatusUIAlpha(true);
+        Debug.Log(index + "面スタート");
+        SetStatusUIActive(true);
 
         DisplayStageCall(index);
 
@@ -254,14 +249,19 @@ public class GameManager : MonoBehaviour
     public void ReturnToTitle()
     {
         TogglePausing();
-        SetStatusUIAlpha(false);
+        SetStatusUIActive(false);
+
+        ResetRunData();
+
         SceneManager.LoadScene(Scenes.Title);
     }
 
     public void ClearToTitle()
     {
-        SetStatusUIAlpha(false);
+        SetStatusUIActive(false);
         clearCall.SetActive(false);
+
+        ResetRunData();
 
         SceneManager.LoadScene(Scenes.Title);
     }
@@ -275,6 +275,20 @@ public class GameManager : MonoBehaviour
         seq.Append(stageCall.DOFade(1f, .3f).SetEase(Ease.OutQuad));
         seq.AppendInterval(2f);
         seq.Append(stageCall.DOFade(0f, 1f).SetEase(Ease.Linear));
+    }
+
+    private void OnEnemyDied(EnemyHealth deadEnemy)
+    {
+        enemyKillCount++;
+
+        if (enemyKillCount % enemyKillDropRate == 0)
+        {
+            var drop = deadEnemy.GetComponent<EnemyDrop>();
+            if (drop != null)
+            {
+                drop.SpawnDrop();
+            }
+        }
     }
 
 }

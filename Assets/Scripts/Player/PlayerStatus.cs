@@ -10,7 +10,7 @@ public class PlayerStatus : MonoBehaviour
 
     // リアルタイム時点での各パラメータ
     public float MoveSpeed { get; private set; }
-    public float LifeTime {  get; private set; }
+    public float LifeTime { get; private set; }
     public int ShotDamage { get; private set; }
     public float FireInterval { get; private set; }
 

@@ -622,7 +622,7 @@ MonoBehaviour:
   baseMoveSpeed: 5
   baseLifeTime: 0.5
   baseShotDamage: 1
-  baseFireInterval: 0.1
+  baseFireInterval: 0.5
 --- !u!114 &898321954
 MonoBehaviour:
   m_ObjectHideFlags: 0
