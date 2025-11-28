@@ -30,9 +30,4 @@ public class TitleUI : MonoBehaviour
         startButtonGroup.DOFade(1f, 0.5f).SetEase(Ease.OutQuad).SetDelay(0.1f);
 
     }
-    public void OnClickStart()
-    {
-         SceneManager.LoadScene(Scenes.Stage + 1);
-    }
-
 }

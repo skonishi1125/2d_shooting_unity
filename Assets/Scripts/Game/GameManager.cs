@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     [Header("Status UI")]
     [SerializeField] public StatusUIHolder StatusUIHolder;
     [SerializeField] private CanvasGroup statusUIGroup;
+    [SerializeField] private CanvasGroup manualRow;
 
     [Header("Stage Clear")]
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
@@ -57,8 +58,14 @@ public class GameManager : MonoBehaviour
         if (gameOverUI == null || StatusUIHolder == null || pauseMenu == null)
             Debug.LogWarning("GameManager: UIが正しく設定されていません。");
 
-        statusUIGroup.alpha = 0;
+        SetStatusUIAlpha(false);
 
+    }
+
+    private void SetStatusUIAlpha(bool isDisplayed)
+    {
+        manualRow.alpha = isDisplayed ? 1f : 0f;
+        statusUIGroup.alpha = isDisplayed ? 1f : 0f;
     }
 
     // シーン移動時に各値を戻すための設定
@@ -210,11 +217,22 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
+    // ゲームの開始処理 Start()が予約されているのでToをつけておく
+    public void StartTo()
+    {
+        SceneManager.LoadScene(Scenes.Stage + 1);
+    }
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverUI.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
+    public void ReturnToTitle()
+    {
+        TogglePausing();
+        SetStatusUIAlpha(false);
+        SceneManager.LoadScene(Scenes.Title);
     }
 
 }
