@@ -6,6 +6,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OnClickReturnToTitle()
     {
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene(Scenes.Title);
     }
 }

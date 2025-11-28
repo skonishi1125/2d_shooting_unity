@@ -32,7 +32,7 @@ public class TitleUI : MonoBehaviour
     }
     public void OnClickStart()
     {
-         SceneManager.LoadScene("Stage1");
+         SceneManager.LoadScene(Scenes.Stage + 1);
     }
 
 }

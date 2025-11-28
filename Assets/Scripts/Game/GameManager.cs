@@ -184,11 +184,11 @@ public class GameManager : MonoBehaviour
         if (currentStageIndex > 3)
         {
             // 全クリ 現状タイトルに戻るが、リザルトがあるならリザルトに
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene(Scenes.Title);
             return;
         }
 
-        SceneManager.LoadScene("Stage" + currentStageIndex);
+        SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
     }
 
     private void ResetManagerState()
