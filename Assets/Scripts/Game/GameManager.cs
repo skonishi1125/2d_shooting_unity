@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using TMPro;
 
 [System.Serializable]
 public class PlayerRunData
@@ -43,7 +45,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup statusUIGroup;
     [SerializeField] private CanvasGroup manualRow;
 
-    [Header("Stage Clear")]
+    [Header("Stages")]
+    [SerializeField] private CanvasGroup stageCall;
+    [SerializeField] private TextMeshProUGUI stageCallText;
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
 
     public bool IsStageClear { get; private set; } = false;
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
         {
             RunData.SetFromStatus(status);
             HasRunData = true;
-            statusUIGroup.alpha = 1;
+            SetStatusUIAlpha(true);
         }
         else
         {
@@ -220,6 +224,16 @@ public class GameManager : MonoBehaviour
     public void StartStage(int index)
     {
         SetStatusUIAlpha(true);
+
+        // stageCall
+        // Coroutine想定だが、DOTweenでやってみる
+        stageCallText.text = "Stage" + index;
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(.2f);
+        seq.Append(stageCall.DOFade(1f, .3f).SetEase(Ease.OutQuad));
+        seq.AppendInterval(2f);
+        seq.Append(stageCall.DOFade(0f, 1f).SetEase(Ease.Linear));
+
         SceneManager.LoadScene(Scenes.Stage + index);
     }
     public void Retry()
