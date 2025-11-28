@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Stage Clear")]
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
+
     public bool IsStageClear { get; private set; } = false;
     private int currentStageIndex = 1; // Stage1
 
