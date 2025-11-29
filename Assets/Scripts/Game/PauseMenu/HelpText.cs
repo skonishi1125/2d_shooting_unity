@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,7 @@ public class HelpText : MonoBehaviour
     [Header("表示先")]
     [SerializeField] private TextMeshProUGUI helpText;
 
-    [Header("割当てる Input Actions")]
+    [Header("New Input Action Reference")]
     [SerializeField] private InputActionReference attackAction;
     [SerializeField] private InputActionReference slowMoveAction;
     [SerializeField] private InputActionReference pauseAction;
@@ -42,54 +43,64 @@ public class HelpText : MonoBehaviour
         if (actionRef == null || actionRef.action == null)
             return "?";
 
-        return actionRef.action.GetBindingDisplayString();
+        string binding = actionRef.action.GetBindingDisplayString();
+        if (binding == "LMB")
+            binding = "左クリック";
+        if (binding == "RMB")
+            binding = "右クリック";
+
+        return binding;
     }
 
     private string GetMoveDisplayString(InputAction action)
     {
         var bindings = action.bindings;
-        //Debug.Log(bindings);
-        var list = new System.Collections.Generic.List<string>();
+        var result = new List<string>();
 
+        // 1. バインディング一覧を全部見る
         for (int i = 0; i < bindings.Count; i++)
         {
-            var b = bindings[i];
+            var binding = bindings[i];
 
-            // コンポジットの先頭（例：2D Vector）だけを見る
-            if (!b.isComposite)
+            // 2. Composite の先頭（"2D Vector" など）だけ処理する
+            if (!binding.isComposite)
                 continue;
 
-            // このコンポジットの4方向をまとめて読む
-            string up = action.GetBindingDisplayString(i + 1);
-            string down = action.GetBindingDisplayString(i + 2);
-            string left = action.GetBindingDisplayString(i + 3);
-            string right = action.GetBindingDisplayString(i + 4);
+            // 3. 次の4つ（up/down/left/right）をまとめて読む
+            var parts = new List<string>();
 
-            // 今回は簡単に「Upキー」だけで表現を決める
-            // Wなら WASD、Arrow なら 方向キー、といった感じで
-            if (up == "W")
+            // i+1 から、isPartOfComposite が false になるまで読む
+            int index = i + 1;
+            while (index < bindings.Count && bindings[index].isPartOfComposite)
             {
-                list.Add("WASD");
+                string keyName = action.GetBindingDisplayString(index);
+                parts.Add(keyName);
+                index++;
             }
-            else if (up.Contains("Arrow"))
+
+            // 4. WASD / Arrow の自動判別
+            string display;
+            if (parts.Contains("W"))
             {
-                list.Add("↑↓←→");
+                display = "WASD";
+            }
+            else if (parts.Exists(k => k.Contains("Up")))
+            {
+                display = "↑↓←→";
             }
             else
             {
-                // 汎用的に書くならこういう形でも良い
-                list.Add($"{up}/{down}/{left}/{right}");
+                display = string.Join("/", parts);
             }
 
-            // 4パーツを読み終わったので i を先に進める
-            i += 4;
+            result.Add(display);
+
+            // 5. 読み終わったので、次のループは composite の終わりまで飛ばす
+            i = index - 1;
         }
 
-        // 複数スキームある場合は「WASD / ↑↓←→」のように連結
-        return string.Join(" / ", list);
+        return string.Join(" / ", result);
     }
-
-
 
 
 

@@ -4790,7 +4790,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "{ATTACK} : \u30B7\u30E7\u30C3\u30C8\r\n{SLOW}  : \u4F4E\u901F\u79FB\u52D5\r\n{PAUSE} 
-    : \u30DD\u30FC\u30BA\r\n{MOVE}  : \u79FB\u52D5"
+    : \u30DD\u30FC\u30BA / \u30DD\u30FC\u30BA\u89E3\u9664\r\n{MOVE}  : \u79FB\u52D5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c62db1d54bd2b8f4cbc5af8293790fc5, type: 2}
   m_sharedMaterial: {fileID: 1764616735808686575, guid: c62db1d54bd2b8f4cbc5af8293790fc5, type: 2}
