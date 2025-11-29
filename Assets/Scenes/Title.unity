@@ -418,8 +418,8 @@ MonoBehaviour:
   clearToTitleButton: {fileID: 1345706430}
   debugStartStageIndex: 2
   debugUsePresetStatus: 1
-  debugShotDamage: 0
-  debugFireInterval: 0
+  debugShotDamage: 20
+  debugFireInterval: 0.41
   debugLifeTime: 1
 --- !u!4 &72977267
 Transform:
