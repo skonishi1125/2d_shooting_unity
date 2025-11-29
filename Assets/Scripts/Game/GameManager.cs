@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject manualRow;
 
     [Header("Stages")]
-    [SerializeField] private CanvasGroup stageCall;
+    [SerializeField] private GameObject stageCall;
     [SerializeField] private TextMeshProUGUI stageCallText;
     [SerializeField] private CanvasGroup fadeCanvas; // フェードアウト用の黒いキャンバス
 
@@ -233,12 +233,9 @@ public class GameManager : MonoBehaviour
     // ゲームの開始処理 Start()が予約されているのでToをつけておく
     public void StartStage(int index)
     {
-        Debug.Log(index + "面スタート");
         SetStatusUIActive(true);
-
-        DisplayStageCall(index);
-
         SceneManager.LoadScene(Scenes.Stage + index);
+        DisplayStageCall(index);
     }
     public void Retry()
     {
@@ -253,12 +250,15 @@ public class GameManager : MonoBehaviour
 
         ResetRunData();
 
+        stageCall.SetActive(false);
+
         SceneManager.LoadScene(Scenes.Title);
     }
 
     public void ClearToTitle()
     {
         SetStatusUIActive(false);
+        stageCall.SetActive(false);
         clearCall.SetActive(false);
 
         ResetRunData();
@@ -268,13 +268,24 @@ public class GameManager : MonoBehaviour
 
     private void DisplayStageCall(int index)
     {
-        // Coroutine想定だが、DOTweenでやってみる
+        // Coroutineでもできるが、DOTweenでやってみる
+        stageCall.SetActive(true);
+        var canvasGroup = stageCall.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0f;
         stageCallText.text = "Stage" + index;
+
         Sequence seq = DOTween.Sequence();
-        seq.AppendInterval(.2f);
-        seq.Append(stageCall.DOFade(1f, .3f).SetEase(Ease.OutQuad));
-        seq.AppendInterval(2f);
-        seq.Append(stageCall.DOFade(0f, 1f).SetEase(Ease.Linear));
+        seq.Append(canvasGroup.DOFade(1f, 0.4f).SetEase(Ease.OutQuad)) // フェードイン
+           .AppendInterval(1.6f)                                       // しばらく表示
+           .Append(canvasGroup.DOFade(0f, 0.6f).SetEase(Ease.Linear))  // フェードアウト
+           .OnComplete(() =>
+           {
+               // 完全に透明になったら非表示にする
+               stageCall.SetActive(false);
+           });
+
+        // ポーズ中(timeScale = 0)でも動作させる
+        seq.SetUpdate(true);
     }
 
     private void OnEnemyDied(EnemyHealth deadEnemy)

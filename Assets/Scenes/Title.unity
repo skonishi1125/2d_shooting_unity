@@ -217,9 +217,9 @@ RectTransform:
   - {fileID: 928688540}
   - {fileID: 667774739}
   - {fileID: 1135673423}
-  - {fileID: 543455121}
   - {fileID: 95946708}
   - {fileID: 141374712}
+  - {fileID: 543455121}
   m_Father: {fileID: 72977267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -410,7 +410,7 @@ MonoBehaviour:
   StatusUIHolder: {fileID: 1135673425}
   statusUIGroup: {fileID: 1135673422}
   manualRow: {fileID: 667774738}
-  stageCall: {fileID: 95946709}
+  stageCall: {fileID: 95946707}
   stageCallText: {fileID: 742731892}
   fadeCanvas: {fileID: 498465249}
   clearCall: {fileID: 141374711}
@@ -442,13 +442,14 @@ GameObject:
   m_Component:
   - component: {fileID: 95946708}
   - component: {fileID: 95946709}
+  - component: {fileID: 95946710}
   m_Layer: 5
   m_Name: StageCallHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &95946708
 RectTransform:
   m_ObjectHideFlags: 0
@@ -477,10 +478,22 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95946707}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!210 &95946710
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95946707}
+  m_Enabled: 1
+  m_SortingLayerID: -1794789205
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &141374711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,7 +1716,7 @@ SortingGroup:
   m_GameObject: {fileID: 543455120}
   m_Enabled: 1
   m_SortingLayerID: 1240012517
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &619394800
@@ -1743,7 +1756,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000637048adabb00595e516e949
+  m_ApplyToSortingLayers: 00000000637048adabb00595
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
