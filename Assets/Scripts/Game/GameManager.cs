@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ① シーン共通処理
+        // シーン共通処理
         IsStageClear = false;
         fadeCanvas.alpha = 0f;
         IsPausing = false;
@@ -108,7 +108,8 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(false);
         clearCall.SetActive(false);
 
-        // ② シーンごとの分岐
+        // シーンごとの分岐
+        // タイトル
         if (scene.name == Scenes.Title)
         {
             SetStatusUIActive(false);
@@ -117,8 +118,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // ここまで来たら、Stageシーン
-        if (scene.name.StartsWith("Stage"))
+        // Stageシーン
+        if (scene.name.StartsWith(Scenes.Stage))
         {
             SetStatusUIActive(true);
             DisplayStageCall(currentStageIndex);
