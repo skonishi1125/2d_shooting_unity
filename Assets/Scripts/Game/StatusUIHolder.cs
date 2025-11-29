@@ -15,7 +15,7 @@ public class StatusUIHolder : MonoBehaviour
 
     public void SetUpRows(PlayerStatus status)
     {
-        damageRow.SetValue(status.ShotDamage, damageUpItemColor);
+        damageRow.SetValue(status.DamageLevel, damageUpItemColor);
         fireRateRow.SetValue(status.FireRateLevel, fireRateItemColor);
         distanceRow.SetValue(status.ShotLifeTimeLevel, distanceItemColor);
     }
@@ -25,7 +25,7 @@ public class StatusUIHolder : MonoBehaviour
         switch (type)
         {
             case ItemType.Damage:
-                damageRow.SetValue(status.ShotDamage, itemColor);
+                damageRow.SetValue(status.DamageLevel, itemColor);
                 break;
             case ItemType.FireRate:
                 fireRateRow.SetValue(status.FireRateLevel, itemColor);

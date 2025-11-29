@@ -169,11 +169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemColor: {r: 1, g: 1, b: 1, a: 1}
-  audioSource: {fileID: -38923016266500832}
   getSfx: {fileID: 8300000, guid: 8a31dbee99ed47347bd4c3b4f1fd9952, type: 3}
   switchInterval: 1
-  addDamage: 1
-  subInterval: 0.05
+  addDamage: 2
+  subInterval: 0.03
   addLifetime: 0.1
   damageColor: {r: 1, g: 0.38431373, b: 0.25882354, a: 1}
   intervalColor: {r: 1, g: 0.8980392, b: 0.2509804, a: 1}

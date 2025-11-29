@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 5
   baseLifeTime: 0.5
-  baseShotDamage: 1
+  baseShotDamage: 10
   baseFireInterval: 0.5
 --- !u!114 &898321954
 MonoBehaviour:

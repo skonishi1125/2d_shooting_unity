@@ -5,7 +5,7 @@ public class CyclingItem : ItemBase
     [Header("Cycle Settings")]
     [SerializeField] private float switchInterval = 1f;
 
-    [SerializeField] private int addDamage = 1;
+    [SerializeField] private int addDamage = 2;
     [SerializeField] private float subInterval = .03f;
     [SerializeField] private float addLifetime = .1f;
 

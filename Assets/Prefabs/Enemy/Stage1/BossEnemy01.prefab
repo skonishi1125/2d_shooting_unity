@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 7998959598135017805}
-  maxHitPoint: 75
+  maxHitPoint: 550
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.05
