@@ -21,12 +21,12 @@ public class PlayerStatus : MonoBehaviour
         get
         {
             const float baseInterval = 0.5f;
-            const float step = 0.05f;
+            const float step = 0.03f;
             const int maxLevel = 10;
 
-            // (0.50 - 0.50) / 0.05 = 0 → 1
-            // (0.50 - 0.45) / 0.05 = 1 → 2
-            // (0.50 - 0.40) / 0.05 = 2 → 3
+            // (0.50 - 0.50) / 0.03 = 0 → 1
+            // (0.50 - 0.47) / 0.03 = 1 → 2
+            // (0.50 - 0.44) / 0.06 = 2 → 3
             float raw = (baseInterval - FireInterval) / step;
             int level = 1 + Mathf.RoundToInt(raw);
 

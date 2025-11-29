@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface IDamageSource
+﻿public interface IDamageSource
 {
     int Damage { get; }
 }

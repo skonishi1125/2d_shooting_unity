@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     // キルカウンタ
     private int enemyKillCount = 0;
-    private int enemyKillDropRate = 5; // ex: 5なら5体ごとにアイテムを落とす
+    private int enemyKillDropRate = 10; // ex: 5なら5体, 10なら10体ごとにDrop
 
     private void Awake()
     {

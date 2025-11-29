@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   events:
-  - time: 0.5
+  - time: 3
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
-  - time: 1
+    viewportY: 0.2
+  - time: 4
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
-  - time: 1.5
+    viewportY: 0.2
+  - time: 5
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
-  - time: 2
+    viewportY: 0.2
+  - time: 6
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
-  - time: 2.5
+    viewportY: 0.2
+  - time: 7
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
+    viewportY: 0.2
