@@ -31,9 +31,11 @@ public class AudioManager : MonoBehaviour
         // wip
     }
 
-    public void PlaySeOneShot(AudioClip clip, float volume = 1f )
+    public void PlaySeOneShot(AudioClip clip, float pitch = 1f, float volume = 1f)
     {
+        seSource.pitch = pitch;
         seSource.PlayOneShot(clip, volume);
+        seSource.pitch = 1f; // 戻す必要がある
     }
 
     public void PlaySeAtPoint(AudioClip clip, Vector3 position, float volume = 1f)

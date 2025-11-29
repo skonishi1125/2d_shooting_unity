@@ -9,6 +9,8 @@ public class PlayerShooter : MonoBehaviour
     private bool canFire;
 
     [Header("Audio")]
+    [SerializeField] private float pitch = 1.5f;
+    [SerializeField] private float volume = 0.15f;
     [SerializeField] private AudioClip fireSfx;
 
     private PlayerStatus status;
@@ -48,7 +50,7 @@ public class PlayerShooter : MonoBehaviour
         if (!canFire)
             return;
 
-        AudioManager.Instance.PlaySeOneShot(fireSfx);
+        AudioManager.Instance.PlaySeOneShot(fireSfx, pitch, volume);
 
         canFire = false;
         fireTimer = status.FireInterval;

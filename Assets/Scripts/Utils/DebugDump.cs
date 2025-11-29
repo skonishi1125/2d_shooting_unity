@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-// Laravel の dd() っぽく中身をダンプするヘルパ。C#だとユーティリティと呼ぶ.
+// Laravel の dd() っぽく中身をダンプするヘルパ(C# だとユーティリティと呼ぶ).
 public class DebugDump
 {
     // JsonUtility で何でも包むためのラッパー

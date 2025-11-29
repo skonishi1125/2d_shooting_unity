@@ -606,7 +606,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1769885592}
   bulletPool: {fileID: 576072405}
-  fireSfx: {fileID: 8300000, guid: 3f34a8ada1849d048af1fcce1d1f1889, type: 3}
+  pitch: 1.5
+  volume: 0.15
+  fireSfx: {fileID: 8300000, guid: 9b9f2436193a35a4b87dc9f575e8925d, type: 3}
 --- !u!114 &898321953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,7 +762,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
