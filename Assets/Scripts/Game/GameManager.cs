@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Status UI")]
     [SerializeField] public StatusUIHolder StatusUIHolder;
-    [SerializeField] private GameObject statusUIGroup;
+    [SerializeField] private GameObject statusUI;
     [SerializeField] private GameObject manualRow;
 
     [Header("Stages")]
@@ -57,10 +58,17 @@ public class GameManager : MonoBehaviour
 
     public bool IsStageClear { get; private set; } = false;
     private int currentStageIndex = 1; // Stage1
+    private const int MaxStageIndex = 3;
 
     // キルカウンタ
     private int enemyKillCount = 0;
     private int enemyKillDropRate = 5; // ex: 5なら5体ごとにアイテムを落とす
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetManagerState();
+    }
 
     private void Awake()
     {
@@ -69,13 +77,6 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("GameManager: 設定値が正しくありません。");
 
         SetStatusUIActive(false);
-
-    }
-
-    private void SetStatusUIActive(bool isDisplayed)
-    {
-        manualRow.SetActive(isDisplayed);
-        statusUIGroup.SetActive(isDisplayed);
     }
 
     // シーン移動時に各値を戻すための設定
@@ -84,16 +85,36 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         EnemyHealth.OnAnyEnemyDied += OnEnemyDied;
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         EnemyHealth.OnAnyEnemyDied -= OnEnemyDied;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void SetStatusUIActive(bool isDisplayed)
     {
-        ResetManagerState();
+        manualRow.SetActive(isDisplayed);
+        statusUI.SetActive(isDisplayed);
+    }
+
+
+    private void UISetActiveToTitle(bool isBool)
+    {
+        SetStatusUIActive(isBool);
+        stageCall.SetActive(isBool);
+        clearCall.SetActive(isBool);
+        gameOverUI.SetActive(isBool);
+
+    }
+
+    // Pause / CLEAR してTitleへ戻る時にステータスをリセットする
+    private void ResetRunData()
+    {
+        HasRunData = false;
+        RunData = new PlayerRunData();
+        // StatusUIに付与されたBarの表示も消す
+
+
     }
 
     private void CheckGameManager()
@@ -134,12 +155,27 @@ public class GameManager : MonoBehaviour
         RunData.SetFromStatus(status);
     }
 
-    // Pause / CLEARしてTitleへ戻る時にステータスをリセットする
-    private void ResetRunData()
+    // Stage1, というような表示処理
+    private void DisplayStageCall(int index)
     {
-        HasRunData = false;
-        RunData = new PlayerRunData();
+        // Coroutineでもできるが、DOTweenでやってみる
+        stageCall.SetActive(true);
+        var canvasGroup = stageCall.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0f;
+        stageCallText.text = "Stage" + index;
 
+        Sequence seq = DOTween.Sequence();
+        seq.Append(canvasGroup.DOFade(1f, 0.4f).SetEase(Ease.OutQuad)) // フェードイン
+           .AppendInterval(1.6f)                                       // しばらく表示
+           .Append(canvasGroup.DOFade(0f, 0.6f).SetEase(Ease.Linear))  // フェードアウト
+           .OnComplete(() =>
+           {
+               // 完全に透明になったら非表示にする
+               stageCall.SetActive(false);
+           });
+
+        // ポーズ中(timeScale = 0)でも動作させる
+        seq.SetUpdate(true);
     }
 
     public void TogglePausing()
@@ -155,17 +191,17 @@ public class GameManager : MonoBehaviour
         if (IsStageClear)
             return;
 
-        Debug.Log("GameManager: STAGE CLEAR!");
         IsStageClear = true;
 
         // コルーチンを回す前に、ゲームクリアか判断する
-        if (currentStageIndex > 2)
+        if (currentStageIndex >= MaxStageIndex)
         {
             Debug.Log("Complete!");
             clearCall.SetActive(true);
             return;
         }
 
+        currentStageIndex++;
         StartCoroutine(StageClearCo());
 
     }
@@ -192,21 +228,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+
     private void LoadNextStage()
     {
-        // 次ステージ
-        currentStageIndex++;
-
-        if (currentStageIndex > 3)
-        {
-            // 全クリ 現状タイトルに戻るが、リザルトがあるならリザルトに
-            //SceneManager.LoadScene(Scenes.Title);
-            Debug.Log("clear!");
-            clearCall.SetActive(true);
-
-            return;
-        }
-
         SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
         DisplayStageCall(currentStageIndex);
     }
@@ -214,7 +238,6 @@ public class GameManager : MonoBehaviour
     private void ResetManagerState()
     {
         IsStageClear = false;
-        //enemyKillCount = 0;  リセットしなくてもいいかも
         if (fadeCanvas != null)
             fadeCanvas.alpha = 0f;
     }
@@ -237,55 +260,35 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(Scenes.Stage + index);
         DisplayStageCall(index);
     }
+
+    // GameOver画面のリトライ
+    // UI非表示, ステータスリセット, キルカウンタ, 現在のステージリセット
     public void Retry()
     {
         gameOverUI.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ResetRunData();
+        enemyKillCount = 0;
+        currentStageIndex = 1;
+        SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
     }
 
+    // Pauseからタイトルへ戻る
+    // Pauseを解除し、ステータスをリセットし、UIを非表示にしてタイトルへ戻る
     public void ReturnToTitle()
     {
         TogglePausing();
-        SetStatusUIActive(false);
-
         ResetRunData();
-
-        stageCall.SetActive(false);
-
+        UISetActiveToTitle(false);
         SceneManager.LoadScene(Scenes.Title);
     }
 
+    // クリア画面からタイトルへ戻る
     public void ClearToTitle()
     {
-        SetStatusUIActive(false);
-        stageCall.SetActive(false);
-        clearCall.SetActive(false);
-
         ResetRunData();
-
+        SetStatusUIActive(false);
+        UISetActiveToTitle(false);
         SceneManager.LoadScene(Scenes.Title);
-    }
-
-    private void DisplayStageCall(int index)
-    {
-        // Coroutineでもできるが、DOTweenでやってみる
-        stageCall.SetActive(true);
-        var canvasGroup = stageCall.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0f;
-        stageCallText.text = "Stage" + index;
-
-        Sequence seq = DOTween.Sequence();
-        seq.Append(canvasGroup.DOFade(1f, 0.4f).SetEase(Ease.OutQuad)) // フェードイン
-           .AppendInterval(1.6f)                                       // しばらく表示
-           .Append(canvasGroup.DOFade(0f, 0.6f).SetEase(Ease.Linear))  // フェードアウト
-           .OnComplete(() =>
-           {
-               // 完全に透明になったら非表示にする
-               stageCall.SetActive(false);
-           });
-
-        // ポーズ中(timeScale = 0)でも動作させる
-        seq.SetUpdate(true);
     }
 
     private void OnEnemyDied(EnemyHealth deadEnemy)

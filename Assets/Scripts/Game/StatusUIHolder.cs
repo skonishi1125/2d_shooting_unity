@@ -8,8 +8,6 @@ public class StatusUIHolder : MonoBehaviour
     [SerializeField] private StatusRowUI fireRateRow;
     [SerializeField] private StatusRowUI distanceRow;
 
-    // アイテムの色が変わるとこちらも変えないといけないので、
-    // 本当はアイテム側から取得したほうが良い。暫定
     [Header("Item Colors")]
     [SerializeField] private Color damageUpItemColor;
     [SerializeField] private Color fireRateItemColor;

@@ -408,7 +408,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 543455120}
   gameOverUI: {fileID: 928688539}
   StatusUIHolder: {fileID: 1135673425}
-  statusUIGroup: {fileID: 1135673422}
+  statusUI: {fileID: 1135673422}
   manualRow: {fileID: 667774738}
   stageCall: {fileID: 95946707}
   stageCallText: {fileID: 742731892}
