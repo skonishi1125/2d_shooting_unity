@@ -46,24 +46,21 @@ MonoBehaviour:
   - time: 13
     enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
     viewportY: 0.1
-  - time: 7
-    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
-    viewportY: 0.1
-  - time: 5
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
-  - time: 6
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
-  - time: 7
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
-  - time: 8
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
   - time: 9
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
     viewportY: 0.3
   - time: 10
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.3
+  - time: 11
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.3
+  - time: 12
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.3
+  - time: 13
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.3
+  - time: 14
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
     viewportY: 0.3

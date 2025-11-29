@@ -285,7 +285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cosmo Pewing
+  m_text: Cosmo Phoot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ca5fdcd75bada94096de2565fe68227, type: 2}
   m_sharedMaterial: {fileID: -5426863783276398137, guid: 0ca5fdcd75bada94096de2565fe68227, type: 2}
@@ -416,6 +416,11 @@ MonoBehaviour:
   clearCall: {fileID: 141374711}
   clearCallText: {fileID: 821958421}
   clearToTitleButton: {fileID: 1345706430}
+  debugStartStageIndex: 2
+  debugUsePresetStatus: 1
+  debugShotDamage: 0
+  debugFireInterval: 0
+  debugLifeTime: 1
 --- !u!4 &72977267
 Transform:
   m_ObjectHideFlags: 0

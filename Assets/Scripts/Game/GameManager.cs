@@ -55,6 +55,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI clearCallText;
     [SerializeField] private CanvasGroup clearToTitleButton;
 
+    [Header("Debug")]
+    [SerializeField] private int debugStartStageIndex;
+    [SerializeField] private bool debugUsePresetStatus = false;
+    [SerializeField] private int debugShotDamage;
+    [SerializeField] private float debugFireInterval;
+    [SerializeField] private float debugLifeTime;
+
     public bool IsStageClear { get; private set; } = false;
     private int currentStageIndex = 1; // Stage1
     private const int MaxStageIndex = 3;
@@ -80,6 +87,27 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);// Stage2, 3とSceneをまたいで残したい
+    }
+
+    private void Start()
+    {
+        // --- デバッグ用 debugStartStageIndexに値を入れると即時遷移する ---
+        #if UNITY_EDITOR
+        if (debugStartStageIndex >= 1)
+        {
+            // デバッグ用ステータスを事前に仕込む
+            if (debugUsePresetStatus)
+            {
+                HasRunData = true;
+                RunData.moveSpeed = 5f; // 固定値
+                RunData.shotDamage = debugShotDamage;
+                RunData.fireInterval = debugFireInterval;
+                RunData.lifetime = debugLifeTime;
+            }
+            StartStage(debugStartStageIndex);
+            return;
+        }
+        #endif
     }
 
     // シーン移動時に各値を戻すための設定

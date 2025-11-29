@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
     private bool slowMovePressed = false;
     private Coroutine beingTransparencyCo;
     private bool wasSlow; // 1フレーム前の slow 状態
-    private float leftLimit;
-    private float rightLimit;
 
     private void Awake()
     {
