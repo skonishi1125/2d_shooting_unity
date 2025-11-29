@@ -36,4 +36,22 @@ public class StatusRowUI : MonoBehaviour
             bars.Add(bar);
         }
     }
+
+    // バーの表示をすべてデフォルトに戻す
+    public void ResetValue(Color color)
+    {
+        // 既存の■を全て消して、valueの数だけ生成し直す
+        foreach (var b in bars)
+            Destroy(b);
+        bars.Clear();
+
+        var bar = Instantiate(barPrefab, barHolder);
+        var img = bar.GetComponentInChildren<Image>();
+        if (img != null)
+        {
+            img.color = color;
+        }
+        bars.Add(bar);
+    }
+
 }

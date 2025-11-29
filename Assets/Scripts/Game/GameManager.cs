@@ -75,8 +75,6 @@ public class GameManager : MonoBehaviour
         CheckGameManager();
         if (StatusUIHolder == null || pauseMenu == null)
             Debug.LogWarning("GameManager: 設定値が正しくありません。");
-
-        SetStatusUIActive(false);
     }
 
     // シーン移動時に各値を戻すための設定
@@ -107,14 +105,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Pause / CLEAR してTitleへ戻る時にステータスをリセットする
+    // Pause / CLEAR からTitle遷移時にステータスをリセットする
     private void ResetRunData()
     {
         HasRunData = false;
         RunData = new PlayerRunData();
         // StatusUIに付与されたBarの表示も消す
-
-
+        StatusUIHolder.ResetRows();
     }
 
     private void CheckGameManager()
@@ -262,33 +259,44 @@ public class GameManager : MonoBehaviour
     }
 
     // GameOver画面のリトライ
-    // UI非表示, ステータスリセット, キルカウンタ, 現在のステージリセット
+    // UI非表示,
+    // status, killCount, StageIndexリセット
     public void Retry()
     {
         gameOverUI.SetActive(false);
-        ResetRunData();
-        enemyKillCount = 0;
-        currentStageIndex = 1;
+        ResetEachDataWhenReturningPlayToTitle();
         SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
     }
 
     // Pauseからタイトルへ戻る
-    // Pauseを解除し、ステータスをリセットし、UIを非表示にしてタイトルへ戻る
+    // Pauseを解除, UI非表示,
+    // status, killCount, StageIndex リセット
     public void ReturnToTitle()
     {
         TogglePausing();
-        ResetRunData();
         UISetActiveToTitle(false);
+        ResetEachDataWhenReturningPlayToTitle();
         SceneManager.LoadScene(Scenes.Title);
+        StopAllCoroutines(); // ボス討伐後にpauseしてタイトルに戻ったケースの考慮
     }
 
     // クリア画面からタイトルへ戻る
+    // 関連UI非表示,
+    // status, killCount, StageIndex リセット
     public void ClearToTitle()
     {
         ResetRunData();
-        SetStatusUIActive(false);
         UISetActiveToTitle(false);
+        ResetEachDataWhenReturningPlayToTitle();
         SceneManager.LoadScene(Scenes.Title);
+    }
+
+    // ゲーム中からタイトルへ戻ったとき、各データをリセットするユーティリティ
+    private void ResetEachDataWhenReturningPlayToTitle()
+    {
+        ResetRunData();
+        enemyKillCount = 0;
+        currentStageIndex = 1;
     }
 
     private void OnEnemyDied(EnemyHealth deadEnemy)

@@ -37,4 +37,13 @@ public class StatusUIHolder : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
+
+    // タイトルに戻ったときやリトライ時、UIの表示を1本ずつに戻す
+    public void ResetRows()
+    {
+        damageRow.ResetValue(damageUpItemColor);
+        fireRateRow.ResetValue(fireRateItemColor);
+        distanceRow.ResetValue(distanceItemColor);
+    }
+
 }
