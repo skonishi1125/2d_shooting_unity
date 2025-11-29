@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -64,17 +63,23 @@ public class GameManager : MonoBehaviour
     private int enemyKillCount = 0;
     private int enemyKillDropRate = 5; // ex: 5なら5体ごとにアイテムを落とす
 
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        ResetManagerState();
-    }
-
     private void Awake()
     {
         CheckGameManager();
         if (StatusUIHolder == null || pauseMenu == null)
             Debug.LogWarning("GameManager: 設定値が正しくありません。");
+    }
+    private void CheckGameManager()
+    {
+        // シングルトンパターンで設計
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);// Stage2, 3とSceneをまたいで残したい
     }
 
     // シーン移動時に各値を戻すための設定
@@ -89,20 +94,72 @@ public class GameManager : MonoBehaviour
         EnemyHealth.OnAnyEnemyDied -= OnEnemyDied;
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // ① シーン共通処理
+        IsStageClear = false;
+        fadeCanvas.alpha = 0f;
+        IsPausing = false;
+        IsGameOver = false;
+        Time.timeScale = 1f;
+
+        stageCall.SetActive(false);
+        pauseMenu.SetActive(false);
+        gameOverUI.SetActive(false);
+        clearCall.SetActive(false);
+
+        // ② シーンごとの分岐
+        if (scene.name == Scenes.Title)
+        {
+            SetStatusUIActive(false);
+            ResetEachData();
+
+            return;
+        }
+
+        // ここまで来たら、Stageシーン
+        if (scene.name.StartsWith("Stage"))
+        {
+            SetStatusUIActive(true);
+            DisplayStageCall(currentStageIndex);
+        }
+    }
+
     private void SetStatusUIActive(bool isDisplayed)
     {
         manualRow.SetActive(isDisplayed);
         statusUI.SetActive(isDisplayed);
     }
 
-
-    private void UISetActiveToTitle(bool isBool)
+    // ステータス、キルカウンタ, Stage進行度の初期化
+    private void ResetEachData()
     {
-        SetStatusUIActive(isBool);
-        stageCall.SetActive(isBool);
-        clearCall.SetActive(isBool);
-        gameOverUI.SetActive(isBool);
+        ResetRunData();
+        enemyKillCount = 0;
+        currentStageIndex = 1;
+    }
 
+    // GameOver画面のリトライ
+    // リトライ時は、Stage1からやり直させる形にする
+    public void Retry()
+    {
+        gameOverUI.SetActive(false);
+        ResetEachData(); // リトライ時は初期化しておく
+        SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
+    }
+
+
+    // Pauseからタイトルへ戻る
+    public void ReturnToTitle()
+    {
+        StopAllCoroutines(); // ボス討伐後にpauseしてタイトルに戻ったケースの考慮
+        SceneManager.LoadScene(Scenes.Title);
+    }
+
+    // クリア画面からタイトルへ戻る
+    public void ClearToTitle()
+    {
+        SceneManager.LoadScene(Scenes.Title);
     }
 
     // Pause / CLEAR からTitle遷移時にステータスをリセットする
@@ -110,21 +167,7 @@ public class GameManager : MonoBehaviour
     {
         HasRunData = false;
         RunData = new PlayerRunData();
-        // StatusUIに付与されたBarの表示も消す
-        StatusUIHolder.ResetRows();
-    }
-
-    private void CheckGameManager()
-    {
-        // シングルトンパターンで設計
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);// Stage2, 3とSceneをまたいで残したい
+        StatusUIHolder.ResetRows(); // StatusUIに付与されたBarの表示も消す
     }
 
     public void InitRunDataIfNeeded(PlayerStatus status)
@@ -226,19 +269,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadNextStage()
-    {
-        SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
-        DisplayStageCall(currentStageIndex);
-    }
-
-    private void ResetManagerState()
-    {
-        IsStageClear = false;
-        if (fadeCanvas != null)
-            fadeCanvas.alpha = 0f;
-    }
-
     public void GameOver()
     {
         if (IsGameOver)
@@ -250,54 +280,22 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
-    // ゲームの開始処理 Start()が予約されているのでToをつけておく
+    // ステージ開始処理
+    // どのステージに行くかだけ担当して、入った後何をするかはOnSceneLoadedに任せる。
     public void StartStage(int index)
     {
-        SetStatusUIActive(true);
+        currentStageIndex = index;
         SceneManager.LoadScene(Scenes.Stage + index);
-        DisplayStageCall(index);
+        //DisplayStageCall(index); OnSceneLoadedで処理するので、不要
     }
 
-    // GameOver画面のリトライ
-    // UI非表示,
-    // status, killCount, StageIndexリセット
-    public void Retry()
+    // ステージ移動処理
+    private void LoadNextStage()
     {
-        gameOverUI.SetActive(false);
-        ResetEachDataWhenReturningPlayToTitle();
         SceneManager.LoadScene(Scenes.Stage + currentStageIndex);
     }
 
-    // Pauseからタイトルへ戻る
-    // Pauseを解除, UI非表示,
-    // status, killCount, StageIndex リセット
-    public void ReturnToTitle()
-    {
-        TogglePausing();
-        UISetActiveToTitle(false);
-        ResetEachDataWhenReturningPlayToTitle();
-        SceneManager.LoadScene(Scenes.Title);
-        StopAllCoroutines(); // ボス討伐後にpauseしてタイトルに戻ったケースの考慮
-    }
 
-    // クリア画面からタイトルへ戻る
-    // 関連UI非表示,
-    // status, killCount, StageIndex リセット
-    public void ClearToTitle()
-    {
-        ResetRunData();
-        UISetActiveToTitle(false);
-        ResetEachDataWhenReturningPlayToTitle();
-        SceneManager.LoadScene(Scenes.Title);
-    }
-
-    // ゲーム中からタイトルへ戻ったとき、各データをリセットするユーティリティ
-    private void ResetEachDataWhenReturningPlayToTitle()
-    {
-        ResetRunData();
-        enemyKillCount = 0;
-        currentStageIndex = 1;
-    }
 
     private void OnEnemyDied(EnemyHealth deadEnemy)
     {
