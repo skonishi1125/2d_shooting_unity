@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8773585, g: 0.24417053, b: 0.24417053, a: 1}
+  m_Color: {r: 0.8207547, g: 0.25938943, b: 0.25938943, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -240,10 +240,10 @@ MonoBehaviour:
   - pattern: 0
     duration: 100
     fireInterval: 0.5
-  moveRange: 3
-  moveSpeed: 1
   enterDuration: 5
   waitDuration: 3
+  moveRange: 3
+  moveSpeed: 1
 --- !u!114 &4970488654093198955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   sr: {fileID: 7998959598135017805}
   maxHitPoint: 550
   baseColor: {r: 0, g: 0, b: 0, a: 0}
-  hitColor: {r: 1, g: 1, b: 1, a: 1}
+  hitColor: {r: 0.8396226, g: 0.60595405, b: 0.60595405, a: 1}
   flashDuration: 0.05
   dieSfx: {fileID: 8300000, guid: 90607b98d8ff6ba408a41690654d7fb8, type: 3}
 --- !u!114 &6742198891661322769

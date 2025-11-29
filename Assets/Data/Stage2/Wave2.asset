@@ -22,3 +22,6 @@ MonoBehaviour:
   - time: 6
     enemyPrefab: {fileID: 366964835774444429, guid: 0abfe3c62e1042e458cc8034fb5d3941, type: 3}
     viewportY: 0.5
+  - time: 8
+    enemyPrefab: {fileID: 366964835774444429, guid: 0abfe3c62e1042e458cc8034fb5d3941, type: 3}
+    viewportY: 0.6

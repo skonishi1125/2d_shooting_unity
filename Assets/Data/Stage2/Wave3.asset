@@ -12,4 +12,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6872917f600e45c4687fd3d9e4147eec, type: 3}
   m_Name: Wave3
   m_EditorClassIdentifier: 
-  events: []
+  events:
+  - time: 1
+    enemyPrefab: {fileID: 1511787047587756283, guid: df4063f1c0d9adf4eb9a40ef8c1c982a, type: 3}
+    viewportY: 0.5
+  - time: 1
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 3
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 5
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 7
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 9
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 9
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.8
+  - time: 4
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0.2
+  - time: 6
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0.2
+  - time: 8
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0.2
+  - time: 10
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0.2
+  - time: 12
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0.2
+  - time: 10
+    enemyPrefab: {fileID: 5734095560643635937, guid: 336693428c84fc44d82b8ac1baa096bc, type: 3}
+    viewportY: 0.8
+  - time: 12
+    enemyPrefab: {fileID: 5734095560643635937, guid: 336693428c84fc44d82b8ac1baa096bc, type: 3}
+    viewportY: 0.8
+  - time: 14
+    enemyPrefab: {fileID: 5734095560643635937, guid: 336693428c84fc44d82b8ac1baa096bc, type: 3}
+    viewportY: 0.8
+  - time: 16
+    enemyPrefab: {fileID: 5734095560643635937, guid: 336693428c84fc44d82b8ac1baa096bc, type: 3}
+    viewportY: 0.8
+  - time: 18
+    enemyPrefab: {fileID: 5734095560643635937, guid: 336693428c84fc44d82b8ac1baa096bc, type: 3}
+    viewportY: 0.8
+  - time: 14
+    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
+    viewportY: 0.5
+  - time: 18
+    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
+    viewportY: 0.5
+  - time: 22
+    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
+    viewportY: 0.5
