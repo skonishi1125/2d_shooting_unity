@@ -48,19 +48,22 @@ MonoBehaviour:
     viewportY: 0.1
   - time: 9
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.8
   - time: 10
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.7
   - time: 11
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.6
   - time: 12
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.5
   - time: 13
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.5
   - time: 14
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.4
+  - time: 15
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
     viewportY: 0.3

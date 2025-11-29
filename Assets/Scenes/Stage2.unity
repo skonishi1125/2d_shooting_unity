@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: 4b1d7aa26384edd49b5075bd76d3a3ea, type: 2}
   waveSpawner: {fileID: 1219275092}
-  bossPrefab: {fileID: 3966274123874666334, guid: 3ab166eece898644a88e86189068e687, type: 3}
+  bossPrefab: {fileID: -6408320285371461712, guid: 3ab166eece898644a88e86189068e687, type: 3}
   bossSpawnPoint: {fileID: 2034732703}
 --- !u!4 &1741409849
 Transform:
