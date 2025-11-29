@@ -625,6 +625,13 @@ MonoBehaviour:
   baseLifeTime: 0.5
   baseShotDamage: 1
   baseFireInterval: 0.5
+  damageStep: 5
+  fireIntervalStep: 0.03
+  lifeTimeStep: 0.1
+  maxLevel: 15
+  maxDamage: 85
+  minFireInterval: 0.1
+  maxLifeTime: 2
 --- !u!114 &898321954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7302bd773714498ae5ec07d109db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: b352bcc6c5b14a9409ace6e61c674384, type: 2}
+  stageData: {fileID: 11400000, guid: 4b1d7aa26384edd49b5075bd76d3a3ea, type: 2}
   waveSpawner: {fileID: 1219275092}
   bossPrefab: {fileID: 3652020755381280808, guid: 548838a3653fd74468dc44c5569f1f75, type: 3}
   bossSpawnPoint: {fileID: 2034732703}

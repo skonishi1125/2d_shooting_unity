@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   events:
-  - time: 1
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
+  - time: 2
+    enemyPrefab: {fileID: 4180814416903897492, guid: d0927b23e8c581042b0a6b979ff8e443, type: 3}
+    viewportY: 0.1

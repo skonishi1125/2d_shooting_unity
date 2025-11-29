@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   events:
-  - time: 3
-    enemyPrefab: {fileID: 6293281430239302775, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
-    viewportY: 0.5
+  - time: 2
+    enemyPrefab: {fileID: 366964835774444429, guid: 0abfe3c62e1042e458cc8034fb5d3941, type: 3}
+    viewportY: 0.3
   - time: 4
-    enemyPrefab: {fileID: 6293281430239302775, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
-    viewportY: 0.5
-  - time: 5
-    enemyPrefab: {fileID: 6293281430239302775, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
-    viewportY: 0.5
+    enemyPrefab: {fileID: 366964835774444429, guid: 0abfe3c62e1042e458cc8034fb5d3941, type: 3}
+    viewportY: 0.4
   - time: 6
-    enemyPrefab: {fileID: 6293281430239302775, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
+    enemyPrefab: {fileID: 366964835774444429, guid: 0abfe3c62e1042e458cc8034fb5d3941, type: 3}
     viewportY: 0.5

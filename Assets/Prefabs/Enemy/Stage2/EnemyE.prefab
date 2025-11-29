@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pattern: 0
   firePoint: {fileID: 1199255840919695965}
-  fireInterval: 1
+  fireInterval: 3
 --- !u!114 &8771966142105079292
 MonoBehaviour:
   m_ObjectHideFlags: 0
