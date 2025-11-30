@@ -45,7 +45,7 @@ https://github.com/skonishi1125/2d_shooting_unity/tree/main/Assets/Scripts/Playe
 以下の設計を考慮しています。
 * New Input Systemの利用
 * 各ステータスの上昇処理
-* GameManagerに上昇値を持たせ、シーン跨ぎの　ステータス引継ぎ対応
+* GameManagerに上昇値を持たせ、シーン跨ぎのステータス引継ぎ対応
 * デバッグ用に、GameManagerを介して各ステータスをInspector上で調整できるようにした
 
 #### 敵スポーン
