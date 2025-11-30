@@ -39,21 +39,20 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Playe
 以下の設計を考慮しています。
 * 弾丸をInstantiate -> Destroyとせず、Poolから再利用するようにした
 
-#### ステータス管理
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/GameManager.cs
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Player/PlayerStatus.cs
+#### 自機周り
+https://github.com/skonishi1125/2d_shooting_unity/tree/main/Assets/Scripts/Player
 
 以下の設計を考慮しています。
-* ステータスの上昇処理
-* 各ステータスのレベル管理
-* デバッグ用プリセットが適用できるようにする
+* New Input Systemの利用
+* 各ステータスの上昇処理
 * GameManagerに上昇値を持たせ、シーン跨ぎの　ステータス引継ぎ対応
+* デバッグ用に、GameManagerを介して各ステータスをInspector上で調整できるようにした
 
 #### 敵スポーン
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/WaveData.cs
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/StageData.cs
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/StageController.cs
-https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/EnemySpawner.cs
+https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/Stage/WaveData.cs
+https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/Stage/StageData.cs
+https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/Stage/StageController.cs
+https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/Stage/EnemySpawner.cs
 
 以下の設計を考慮しています。
 * スポナーの実装
@@ -62,9 +61,10 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/
 
 #### その他
 * バージョン管理
+* 操作説明画面にて、keyをNewInputSystemから取得して文字列が動的に変わるように
 * 被弾時の無敵判定処理
 * デバッグ機能
 * 低速移動時、自身の当たり判定が見えるように
 * 敵の共通クラス管理
-* 外部ライブラリ(DOTween)の使用
+* 外部ライブラリ(`DOTween`)の使用
 
