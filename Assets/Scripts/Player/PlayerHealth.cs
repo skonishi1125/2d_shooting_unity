@@ -88,9 +88,20 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != Layers.Enemy &&
-            collision.gameObject.layer != Layers.EnemyBullet &&
-            collision.gameObject.layer != Layers.Hazard)
+        TryApplyContactDamage(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        TryApplyContactDamage(collision);
+    }
+
+    private void TryApplyContactDamage(Collider2D collision)
+    {
+        int layer = collision.gameObject.layer;
+        if (layer != Layers.Enemy &&
+            layer != Layers.EnemyBullet &&
+            layer != Layers.Hazard)
             return;
 
         var source = collision.GetComponent<IDamageSource>();
