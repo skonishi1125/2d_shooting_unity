@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource seSource;
-    [SerializeField] private AudioSource bgmSource;
 
     private void Awake()
     {
@@ -24,11 +23,6 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);// Stage2, 3とSceneをまたいで残したい
-    }
-
-    public void PlayBgm()
-    {
-        // wip
     }
 
     public void PlaySeOneShot(AudioClip clip, float pitch = 1f, float volume = 1f)

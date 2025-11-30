@@ -5,7 +5,7 @@ public class BossEnemy3 : BossBase
     [Header("Infinity Movement Settings")]
     [SerializeField] private float amplitudeX = 3f;  // 横の広がり
     [SerializeField] private float amplitudeY = 2f;  // 縦の広がり
-    [SerializeField] private float speed = 1.5f;     // 速さ
+    [SerializeField] private float amplitudeSpeed = 1.5f;     // 速さ
     [SerializeField] private float startMoveDelay = 1f;
 
     private Vector2 centerPos;
@@ -48,7 +48,7 @@ public class BossEnemy3 : BossBase
             return;
         }
 
-        t += Time.fixedDeltaTime * speed;
+        t += Time.fixedDeltaTime * amplitudeSpeed;
 
         float x = amplitudeX * Mathf.Sin(t);
         float y = amplitudeY * Mathf.Sin(t) * Mathf.Cos(t);

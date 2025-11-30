@@ -3739,7 +3739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seSource: {fileID: 1444501777}
-  bgmSource: {fileID: 1444501777}
 --- !u!4 &1444501776
 Transform:
   m_ObjectHideFlags: 0

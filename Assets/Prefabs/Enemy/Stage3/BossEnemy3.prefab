@@ -296,8 +296,8 @@ MonoBehaviour:
     duration: 4
     fireInterval: 0.2
   enterDuration: 6
-  waitDuration: 1
+  waitDuration: 0.3
   amplitudeX: 2.5
   amplitudeY: 5
-  speed: 1.5
+  amplitudeSpeed: 1.5
   startMoveDelay: 1

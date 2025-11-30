@@ -45,7 +45,6 @@ public class PlayerStatus : MonoBehaviour
         get
         {
             const float baseInterval = 0.5f;
-            const float fireIntervalStep = 0.03f;
 
             // (0.50 - 0.50) / 0.03 = 0 → 1
             // (0.50 - 0.47) / 0.03 = 1 → 2
