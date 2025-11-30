@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null)
             return;
 
-        // x軸はSpawnerのposition, y軸は画面のy軸内でランダムに沸かせる
+        // x軸はSpawnerのposition, y軸は画面のy軸内で指定した箇所に沸かせる
         viewportSpawnX = cam.WorldToViewportPoint(gameObject.transform.position).x;
         viewportSpawnY = Random.Range(0f, 1.0f);
 

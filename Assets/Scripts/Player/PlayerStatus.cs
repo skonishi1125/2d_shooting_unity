@@ -60,7 +60,6 @@ public class PlayerStatus : MonoBehaviour
         get
         {
             const float baseLifetime = 0.5f;
-            const float lifeTimeStep = 0.1f;
 
             // (0.5 - 0.5) / 0.1 = 0 → 1
             // (0.6 - 0.5) / 0.1 = 1 → 2

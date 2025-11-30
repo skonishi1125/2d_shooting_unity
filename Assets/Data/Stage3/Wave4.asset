@@ -10,60 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6872917f600e45c4687fd3d9e4147eec, type: 3}
-  m_Name: Wave6
+  m_Name: Wave4
   m_EditorClassIdentifier: 
   events:
-  - time: 1
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
   - time: 2
-    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
-    viewportY: 0.3
-  - time: 2
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    enemyPrefab: {fileID: 1271484156483977192, guid: d715bc65ef0791e4582b803789299b6c, type: 3}
+    viewportY: 0.5
   - time: 3
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
-  - time: 4
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
-  - time: 6
-    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
-    viewportY: 0.3
-  - time: 7
-    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
-    viewportY: 0.1
-  - time: 9
-    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
-    viewportY: 0.1
-  - time: 9
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.8
-  - time: 10
-    enemyPrefab: {fileID: 5592471391712813953, guid: 3aeb09f79149cdb4ca92202ef414ce3a, type: 3}
-    viewportY: 0.3
-  - time: 10
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    enemyPrefab: {fileID: 1047494270342915443, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
     viewportY: 0.7
-  - time: 11
-    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
-    viewportY: 0.1
+  - time: 5
+    enemyPrefab: {fileID: 1047494270342915443, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
+    viewportY: 0.5
+  - time: 7
+    enemyPrefab: {fileID: 1047494270342915443, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
+    viewportY: 0.5
+  - time: 9
+    enemyPrefab: {fileID: 1047494270342915443, guid: ace42b33ba4be294eaf3d300cadc3679, type: 3}
+    viewportY: 0.7
+  - time: 10
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.3
   - time: 11
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.6
+    viewportY: 0.3
   - time: 12
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
+    viewportY: 0.3
+  - time: 12
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0
+  - time: 13
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.6
   - time: 13
     enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
-    viewportY: 0.1
-  - time: 13
-    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.5
+    viewportY: 0
   - time: 14
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.4
+    viewportY: 0.6
+  - time: 14
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0
   - time: 15
     enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
-    viewportY: 0.3
+    viewportY: 0.6
+  - time: 15
+    enemyPrefab: {fileID: 6697717910931016534, guid: c09bf0dcafc7b9546ac935bfecf3d4fc, type: 3}
+    viewportY: 0
+  - time: 16
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.6
+  - time: 17
+    enemyPrefab: {fileID: 2164538137857549165, guid: e84629728aa6bce4fa88d7cb95fb1387, type: 3}
+    viewportY: 0.6

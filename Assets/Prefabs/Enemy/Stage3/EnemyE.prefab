@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
+  m_Color: {r: 0.34901962, g: 0.6784314, b: 0.64705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  lifeTime: 10
+  lifeTime: 13
   contactDamage: 1
   amplitude: 2
   frequency: 2
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 356786841876710424}
-  maxHitPoint: 3
+  maxHitPoint: 40
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.05
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631dcf44bdfe87b49820a1526b983197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pattern: 0
+  pattern: 1
   firePoint: {fileID: 1199255840919695965}
   fireInterval: 3
 --- !u!114 &8771966142105079292
