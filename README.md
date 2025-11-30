@@ -1,6 +1,12 @@
 ## Cosmo Phoot
 https://unityroom.com/games/251130_cosmo_phoot
 
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/11bee5c6-6d89-45b0-ae39-5e4a5d4e7db0" />
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/2c938d21-59fb-40b1-8bde-926617aad757" />
+
+<img width="1872" height="932" alt="image" src="https://github.com/user-attachments/assets/ce719362-fc9c-4e4f-af86-e49a70e6a0e6" />
+
 ### 作業環境など
 開発期間：2週間
 Unity Vesion：6000.0.60f1
@@ -21,7 +27,6 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/
 * DontDestroyOnLoadでScene遷移し、共通して使えるようにする
 * ステージ遷移処理、暗転演出、プレイヤーのステータス引継ぎ
 * ポーズやクリアフラグ、ゲームオーバー等ゲーム全体の制御
-
 
 #### ObjectPool
 https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/ObjectPool/BulletPool.cs
@@ -54,7 +59,10 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/
 * 敵の出現パターンをScriptableObjectで定義
 
 #### その他
+* バージョン管理
 * 被弾時の無敵判定処理
+* デバッグ機能
 * 低速移動時、自身の当たり判定が見えるように
-* Coroutine及び、DOTweenなど外部ライブラリの使用
+* 敵の共通クラス管理
+* 外部ライブラリ(DOTween)の使用
 
