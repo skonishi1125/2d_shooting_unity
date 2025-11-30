@@ -8,10 +8,10 @@ https://unityroom.com/games/251130_cosmo_phoot
 <img width="1872" height="932" alt="image" src="https://github.com/user-attachments/assets/ce719362-fc9c-4e4f-af86-e49a70e6a0e6" />
 
 ### 作業環境など
-開発期間：2週間
-Unity Vesion：6000.0.60f1
-ジャンル：2D シューティング
-担当範囲：ゲームデザイン / プログラム / UIなど
+* 開発期間：2週間
+* Vesion：6000.0.60f1
+* ジャンル：2D シューティング
+* 作業範囲：ゲームデザイン / プログラム / UIなど
 
 ### ゲームの説明
 上下移動・ショットを駆使して進む 2D 横スクロールシューティングです。
