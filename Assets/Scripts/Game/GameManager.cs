@@ -304,6 +304,7 @@ public class GameManager : MonoBehaviour
             return;
 
         IsGameOver = true;
+        Time.timeScale = 0f;
 
         // UI表示
         gameOverUI.SetActive(true);

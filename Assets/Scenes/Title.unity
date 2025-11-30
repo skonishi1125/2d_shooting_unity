@@ -416,11 +416,11 @@ MonoBehaviour:
   clearCall: {fileID: 141374711}
   clearCallText: {fileID: 821958421}
   clearToTitleButton: {fileID: 1345706430}
-  debugStartStageIndex: 0
+  debugStartStageIndex: 2
   debugUsePresetStatus: 1
-  debugShotDamage: 75
-  debugFireInterval: 0.11
-  debugLifeTime: 1.8
+  debugShotDamage: 15
+  debugFireInterval: 0.41
+  debugLifeTime: 0.8
 --- !u!4 &72977267
 Transform:
   m_ObjectHideFlags: 0
@@ -1270,7 +1270,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7f409d4997d0eef44bf893f7107cb021, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
