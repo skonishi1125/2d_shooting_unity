@@ -7,9 +7,9 @@ https://unityroom.com/games/251130_cosmo_phoot
 
 <img width="1872" height="932" alt="image" src="https://github.com/user-attachments/assets/ce719362-fc9c-4e4f-af86-e49a70e6a0e6" />
 
-### 作業環境など
+### 環境等
 * 製作時間：100時間ほど
-* Vesion：6000.0.60f1
+* Unity Ver：6000.0.60f1
 * ジャンル：2D シューティング
 * 作業範囲：ゲームデザイン / プログラム / UIなど
 
