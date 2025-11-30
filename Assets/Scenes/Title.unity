@@ -416,7 +416,7 @@ MonoBehaviour:
   clearCall: {fileID: 141374711}
   clearCallText: {fileID: 821958421}
   clearToTitleButton: {fileID: 1345706430}
-  debugStartStageIndex: 2
+  debugStartStageIndex: 0
   debugUsePresetStatus: 1
   debugShotDamage: 15
   debugFireInterval: 0.41
