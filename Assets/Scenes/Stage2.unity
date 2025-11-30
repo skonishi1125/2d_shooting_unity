@@ -628,10 +628,9 @@ MonoBehaviour:
   damageStep: 5
   fireIntervalStep: 0.03
   lifeTimeStep: 0.1
-  maxLevel: 15
-  maxDamage: 85
-  minFireInterval: 0.1
-  maxLifeTime: 2
+  maxDamage: 80
+  minFireInterval: 0.08
+  maxLifeTime: 1.9
 --- !u!114 &898321954
 MonoBehaviour:
   m_ObjectHideFlags: 0

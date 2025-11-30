@@ -15,9 +15,9 @@ public class StatusUIHolder : MonoBehaviour
 
     public void SetUpRows(PlayerStatus status)
     {
-        damageRow.SetValue(status.DamageLevel, damageUpItemColor);
-        fireRateRow.SetValue(status.FireRateLevel, fireRateItemColor);
-        distanceRow.SetValue(status.ShotLifeTimeLevel, distanceItemColor);
+        damageRow.SetValue(status.DamageLevel, status.MaxLevel,damageUpItemColor);
+        fireRateRow.SetValue(status.FireRateLevel, status.MaxLevel,fireRateItemColor);
+        distanceRow.SetValue(status.ShotLifeTimeLevel, status.MaxLevel,distanceItemColor);
     }
 
     public void UpdateAll(PlayerStatus status, ItemType type, Color itemColor)
@@ -25,13 +25,13 @@ public class StatusUIHolder : MonoBehaviour
         switch (type)
         {
             case ItemType.Damage:
-                damageRow.SetValue(status.DamageLevel, itemColor);
+                damageRow.SetValue(status.DamageLevel, status.MaxLevel,itemColor);
                 break;
             case ItemType.FireRate:
-                fireRateRow.SetValue(status.FireRateLevel, itemColor);
+                fireRateRow.SetValue(status.FireRateLevel, status.MaxLevel,itemColor);
                 break;
             case ItemType.LifeTime:
-                distanceRow.SetValue(status.ShotLifeTimeLevel, itemColor);
+                distanceRow.SetValue(status.ShotLifeTimeLevel, status.MaxLevel,itemColor);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

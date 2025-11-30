@@ -12,16 +12,18 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private int damageStep = 5;
     [SerializeField] private float fireIntervalStep = .03f;
     [SerializeField] private float lifeTimeStep = .1f;
-    [SerializeField] private int maxLevel = 15;
-    [SerializeField] private int maxDamage = 85;
-    [SerializeField] private float minFireInterval = 0.1f;
-    [SerializeField] private float maxLifeTime = 2f;
+    [SerializeField] private int maxDamage = 80;
+    [SerializeField] private float minFireInterval = 0.08f;
+    [SerializeField] private float maxLifeTime = 1.9f;
+    private int maxLevel = 15;
+
 
     // リアルタイム時点での各パラメータ
     public float MoveSpeed { get; private set; }
     public float LifeTime { get; private set; }
     public int ShotDamage { get; private set; }
     public float FireInterval { get; private set; }
+    public int MaxLevel => maxLevel;
 
     // プロパティ
     // 値を公開するが、内部計算して結果を返すやり方
@@ -47,7 +49,9 @@ public class PlayerStatus : MonoBehaviour
 
             // (0.50 - 0.50) / 0.03 = 0 → 1
             // (0.50 - 0.47) / 0.03 = 1 → 2
-            // (0.50 - 0.44) / 0.06 = 2 → 3
+            // (0.50 - 0.44) / 0.03 = 2 → 3
+            // ... 14つ取ると、0.42f 下がる
+            // (0.50 - 0.08) / 0.03 = 14 → 15
             float raw = (baseInterval - FireInterval) / fireIntervalStep;
             int level = 1 + Mathf.RoundToInt(raw);
 

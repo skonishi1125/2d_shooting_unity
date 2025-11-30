@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -18,7 +18,7 @@ public class StatusRowUI : MonoBehaviour
         }
     }
 
-    public void SetValue(int value, Color color)
+    public void SetValue(int value, int maxLevel, Color color)
     {
         // 既存の■を全て消して、valueの数だけ生成し直す
         foreach (var b in bars)
@@ -31,7 +31,10 @@ public class StatusRowUI : MonoBehaviour
             var img = bar.GetComponentInChildren<Image>();
             if (img != null)
             {
-                img.color = color;
+                if (value == maxLevel)
+                    img.color = Color.white; // 最大レベル時は白色
+                else
+                    img.color = color;
             }
             bars.Add(bar);
         }
