@@ -60,7 +60,7 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/
 * 敵の出現パターンをScriptableObjectで定義
 
 #### その他
-* バージョン管理
+* バージョン管理※効果音など、外部素材はignore済
 * 操作説明画面にて、keyをNewInputSystemから取得して文字列が動的に変わるように
 * 被弾時の無敵判定処理
 * デバッグ機能
