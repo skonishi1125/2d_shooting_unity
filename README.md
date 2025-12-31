@@ -92,12 +92,10 @@ https://github.com/skonishi1125/2d_shooting_unity/blob/main/Assets/Scripts/Game/
 * 敵の共通クラス管理
 * DOTween等外部ライブラリの使用
 
-### クレジット
+### お借りした素材など
 ```
-OtoLogic様
+効果音
 https://otologic.jp/free/license.html
-
-効果音工房様
 https://umipla.com/
 ```
 
